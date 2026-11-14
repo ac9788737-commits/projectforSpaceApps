@@ -1,0 +1,11 @@
+crop_id,harvest_organ,growth_form,height_max_m,biomass_max_g,harvest_index,organ_count_max,leaf_count_max,lai_max,flowering_frac,organ_init_frac,estimate,reference,notes
+lettuce,leaf,rosette,0.25,25,0.85,1,30,3.0,,0.0,true,,Dry mass per plant; typical head; visual and morphology estimate
+potato,tuber,bush,0.6,300,0.75,10,60,4.0,0.45,0.35,true,,Dry mass per plant; tubers initiate before flowering; estimate
+wheat,grain,grass,0.9,5,0.45,3,12,5.0,0.5,0.55,true,,Dry mass per plant with tillers; organ = ear; estimate
+tomato,fruit,vine,1.5,400,0.6,30,40,3.5,0.35,0.45,true,,Dry mass per plant; indeterminate habit simplified; estimate
+soybean,pod,bush,0.9,40,0.45,50,25,5.0,0.45,0.55,true,,Dry mass per plant; organ = pod; estimate
+rice,grain,grass,1.0,30,0.45,15,20,6.0,0.6,0.62,true,,Dry mass per hill; organ = panicle; estimate
+radish,root,rosette,0.25,8,0.6,1,8,2.0,,0.2,true,,Dry mass per plant; organ = storage root; estimate
+spinach,leaf,rosette,0.3,10,0.9,1,20,3.0,,0.0,true,,Dry mass per plant; estimate
+pea,pod,vine,0.8,15,0.45,12,20,4.0,0.45,0.55,true,,Dry mass per plant; organ = pod; estimate
+spirulina,biomass,mat,0.02,10,1.0,0,0,0.0,,0.0,true,,Dry biomass per litre of culture; no organs; estimate

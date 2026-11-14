@@ -1,0 +1,17 @@
+services:
+  backend:
+    build: ./backend
+    environment:
+      ASTROCROP_DATA_DIR: /data
+      ASTROCROP_ADMIN_TOKEN: ${ASTROCROP_ADMIN_TOKEN:-}
+    volumes:
+      - ./data:/data
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"

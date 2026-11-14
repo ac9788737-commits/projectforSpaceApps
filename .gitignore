@@ -1,0 +1,13 @@
+data/raw/
+data/*.db
+.env
+__pycache__/
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.hypothesis/
+node_modules/
+dist/
+data/scenarios/
+/index.html

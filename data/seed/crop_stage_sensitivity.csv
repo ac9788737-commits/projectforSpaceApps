@@ -1,0 +1,31 @@
+crop_id,stage,frost_onset_c,frost_kill_c,frost_kill_hours,heat_onset_c,sterility_onset_c,sterility_per_degree_hour,warm_night_tuber_c,waterlog_onset_h,lodging_wind_ms,estimate,reference,notes
+potato,vegetative,0.0,,3,32,,,,48,24,true,,"Frost kill temperature from EcoCrop KTMP when blank"
+potato,flowering,0.0,,3,32,,,18,48,24,true,,"Tuber initiation is inhibited by warm nights (direction); threshold is an estimate"
+potato,fruiting,0.0,,3,32,,,18,48,24,true,,"Tuber bulking slows in warm nights; threshold is an estimate"
+lettuce,vegetative,0.5,,3,32,,,,36,20,true,,
+lettuce,flowering,0.5,,3,32,,,,36,20,true,,
+lettuce,fruiting,0.5,,3,32,,,,36,20,true,,
+wheat,vegetative,-2.0,-8.0,4,34,,,,72,18,true,doi:10.1016/S1161-0301(98)00047-1,"Vegetative wheat tolerates light frost; values are estimates informed by Porter & Gawith 1999"
+wheat,flowering,0.0,-3.0,2,34,31,0.012,,72,14,true,doi:10.1016/S1161-0301(98)00047-1,"Heat at anthesis causes floret sterility (Porter & Gawith 1999; Hatfield & Prueger 2015 doi:10.1016/j.wace.2015.08.001); per-degree-hour rate is an estimate"
+wheat,fruiting,-1.0,-4.0,3,34,,,,72,12,true,doi:10.1016/S1161-0301(98)00047-1,"Ripening grain lodges in strong wind; thresholds are estimates"
+tomato,vegetative,1.0,,2,35,,,,36,20,true,,"Chilling-sensitive"
+tomato,flowering,1.5,,2,35,32,0.015,,36,20,true,doi:10.1016/j.wace.2015.08.001,"Heat during flowering reduces fruit set (Hatfield & Prueger 2015); thresholds are estimates"
+tomato,fruiting,1.5,,2,35,34,0.008,,36,20,true,doi:10.1016/j.wace.2015.08.001,"Fruit set continues to suffer from heat; estimates"
+soybean,vegetative,0.5,,2,38,,,,48,22,true,,
+soybean,flowering,1.0,,2,38,35,0.01,,48,22,true,doi:10.1016/j.wace.2015.08.001,"Heat during flowering reduces pod set (direction); estimates"
+soybean,fruiting,1.0,,2,38,,,,48,20,true,,
+rice,vegetative,2.0,,2,38,,,,,22,true,,"Paddy rice tolerates flooding: no waterlogging damage"
+rice,flowering,3.0,,2,38,35,0.012,,,18,true,doi:10.1016/j.wace.2015.08.001,"Heat at anthesis causes spikelet sterility (direction); estimates"
+rice,fruiting,2.0,,2,38,,,,,16,true,,
+radish,vegetative,-1.0,,3,32,,,,36,22,true,,
+radish,flowering,-1.0,,3,32,,,,36,22,true,,
+radish,fruiting,-1.0,,3,32,,,,36,22,true,,
+spinach,vegetative,-4.0,,4,30,,,,36,22,true,,"Cold-hardy leaf crop"
+spinach,flowering,-4.0,,4,30,,,,36,22,true,,
+spinach,fruiting,-4.0,,4,30,,,,36,22,true,,
+pea,vegetative,-1.0,,3,30,,,,48,18,true,,
+pea,flowering,0.0,,3,30,29,0.01,,48,18,true,,"Heat during flowering reduces pod set (direction); estimates"
+pea,fruiting,0.0,,3,30,,,,48,16,true,,
+spirulina,vegetative,12.0,,2,40,,,,,99,true,,"Culture in a tank: frost/heat apply to the medium; no waterlogging or lodging"
+spirulina,flowering,12.0,,2,40,,,,,99,true,,
+spirulina,fruiting,12.0,,2,40,,,,,99,true,,

@@ -1,0 +1,130 @@
+@import "tailwindcss";
+@import "./styles/tokens.css";
+
+:root {
+  color-scheme: light;
+  --page: #f9f9f7;
+  --surface: #fcfcfb;
+  --surface-2: #f0efec;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --ink-3: #6f6e69;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --border: rgba(11, 11, 11, 0.1);
+  --accent: #2a78d6;
+  --accent-ink: #ffffff;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --par-band: rgba(27, 175, 122, 0.14);
+  --good: #0ca30c;
+  --warning: #fab219;
+  --critical: #d03b3b;
+  --good-text: #006300;
+  --warning-text: #7a5400;
+  --critical-text: #a92a2a;
+  --seq-1: #cde2fb;
+  --seq-2: #86b6ef;
+  --seq-3: #3987e5;
+  --seq-4: #1c5cab;
+  --seq-5: #0d366b;
+  --seq-1-ink: #0b0b0b;
+  --seq-2-ink: #0b0b0b;
+  --seq-3-ink: #0b0b0b;
+  --seq-4-ink: #ffffff;
+  --seq-5-ink: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --surface-2: #2c2c2a;
+    --ink: #f0efec;
+    --ink-2: #c3c2b7;
+    --ink-3: #a3a29a;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --border: rgba(255, 255, 255, 0.1);
+    --accent: #3987e5;
+    --accent-ink: #ffffff;
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --par-band: rgba(25, 158, 112, 0.2);
+    --good-text: #4fce4f;
+    --warning-text: #fab219;
+    --critical-text: #f08a8a;
+    --seq-1: #184f95;
+    --seq-2: #256abf;
+    --seq-3: #5598e7;
+    --seq-4: #9ec5f4;
+    --seq-5: #cde2fb;
+    --seq-1-ink: #ffffff;
+    --seq-2-ink: #ffffff;
+    --seq-3-ink: #0b0b0b;
+    --seq-4-ink: #0b0b0b;
+    --seq-5-ink: #0b0b0b;
+  }
+}
+
+@theme inline {
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-good: var(--good-text);
+  --color-warn: var(--warning-text);
+  --color-crit: var(--critical-text);
+  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Design-system tokens (docs/DESIGN.md), resolved per data-mood. */
+  --color-panel: var(--bg-panel);
+  --color-panel-strong: var(--bg-panel-strong);
+  --color-subtle: var(--border-subtle);
+  --color-fg: var(--text-primary);
+  --color-fg-muted: var(--text-secondary);
+  --color-glow: var(--accent-glow);
+  --color-hover: var(--hover);
+  --color-void: var(--bg-void);
+  --color-scrim: var(--scrim);
+  --color-ok: var(--ok);
+  --color-stress: var(--stress);
+  --color-lethal: var(--lethal);
+  --color-real: var(--data-real);
+  --color-estimate: var(--data-estimate);
+  --color-hypo: var(--data-hypo);
+  --color-habitable: var(--habitable);
+  --color-leaf: var(--leaf);
+  --color-soil: var(--soil);
+  --radius-pnl: var(--radius-panel);
+  --radius-ctl: var(--radius-control);
+  --font-head: var(--font-display);
+  --font-body: var(--font-ui);
+  --font-num: var(--font-data);
+  --ease-panel: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+body {
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  margin: 0;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

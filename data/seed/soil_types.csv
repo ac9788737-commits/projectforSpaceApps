@@ -1,0 +1,7 @@
+soil,name_ru,field_capacity_frac,wilting_point_frac,saturation_frac,drainage_mm_h,soil_factor,estimate,reference,notes
+sand,песок,0.12,0.045,0.38,8.0,0.85,false,"FAO Irrigation and Drainage Paper 56 (Allen et al., 1998), Table 19 — https://www.fao.org/4/x0490e/x0490e00.htm","FC and WP: midpoints of FAO-56 Table 19 ranges; saturation, drainage and soil_factor are estimates"
+loam,суглинок,0.25,0.12,0.45,2.0,1.0,false,"FAO Irrigation and Drainage Paper 56 (Allen et al., 1998), Table 19 — https://www.fao.org/4/x0490e/x0490e00.htm","FC and WP: midpoints of FAO-56 Table 19 ranges; saturation, drainage and soil_factor are estimates"
+clay,глина,0.36,0.22,0.50,0.4,0.9,false,"FAO Irrigation and Drainage Paper 56 (Allen et al., 1998), Table 19 — https://www.fao.org/4/x0490e/x0490e00.htm","FC and WP: midpoints of FAO-56 Table 19 ranges; saturation, drainage and soil_factor are estimates"
+regolith,реголит,0.16,0.06,0.40,5.0,0.7,true,,"Sandy-loam-like simulant behaviour; all values estimates"
+treated_regolith,очищенный реголит,0.16,0.06,0.40,5.0,0.85,true,,"Regolith washed of perchlorates and amended inside a dome; estimates"
+hydroponic,гидропоника,0.40,0.05,0.50,50.0,1.0,true,,"Engineered substrate kept moist by the system; estimates"
