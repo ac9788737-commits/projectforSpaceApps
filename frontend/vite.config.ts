@@ -5,8 +5,19 @@ import { defineConfig } from "vite";
 
 const backend = process.env.ASTROCROP_API ?? "http://127.0.0.1:8000";
 
+/** «/» is the site's entry page (public/landing.html), the same as nginx does in production. */
+const landing = {
+  name: "astrocrop-landing",
+  configureServer(server: { middlewares: { use: (fn: (req: { url?: string }, res: unknown, next: () => void) => void) => void } }) {
+    server.middlewares.use((req, _res, next) => {
+      if (req.url === "/" || req.url?.startsWith("/?")) req.url = "/landing.html" + (req.url.slice(1) || "");
+      next();
+    });
+  },
+};
+
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [landing, react(), tailwindcss()],
   resolve: { alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) } },
   server: {
     host: "0.0.0.0",

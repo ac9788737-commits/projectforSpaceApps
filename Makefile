@@ -1,4 +1,4 @@
-.PHONY: install test lint format ingest snapshot openapi dev-backend dev-frontend build up down
+.PHONY: e2e precompute install test lint format ingest snapshot openapi dev-backend dev-frontend build up down
 
 install:
 	cd backend && uv sync
@@ -7,6 +7,9 @@ install:
 test:
 	cd backend && uv run pytest
 	cd frontend && npm test
+
+e2e:
+	uv run --with playwright python frontend/e2e/liveness.py
 
 lint:
 	cd backend && uv run ruff check app tests && uv run ruff format --check app tests && uv run mypy
@@ -39,3 +42,6 @@ up:
 
 down:
 	docker compose down
+
+precompute:
+	cd backend && uv run python -m app.rotation.precompute_imagery && uv run python -m app.rotation.precompute

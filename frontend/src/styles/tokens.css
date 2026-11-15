@@ -1,18 +1,249 @@
-/* AstroCrop design tokens (docs/DESIGN.md §2–3). Components use these, never raw colours.
-   The 3D mode root carries data-mood="space" | "garden"; values interpolate over 600 ms. */
+/* WhatCropNext design tokens — farm palette (v3).
+   Colour follows the two-layer structure of elayadesign/ai-design-skills (figma-designer, «Color»):
+   1) Core Colors — raw palettes, shades 00 (near white) … 500 (base hue) … 1000 (near black);
+   2) Color System — role tokens (surface, text, border, action, icon, overlay) that only alias
+      Core Colors. Components use role tokens (or the older names mapped onto them below), never hex;
+      scripts/design-lint.ts checks it. One accent (ripe wheat), saturation under 80 %, flat surfaces.
+   Data colours keep their meaning: soil = Munsell 10YR (organic carbon), crops = seed-packet colours
+   by family, water = irrigation blue.
+   The Lab (3D space and garden) keeps data-mood="space" | "garden". */
 
-@property --bg-panel { syntax: "<color>"; inherits: true; initial-value: rgba(12, 17, 30, 0.86); }
-@property --bg-panel-strong { syntax: "<color>"; inherits: true; initial-value: rgba(10, 14, 26, 0.88); }
-@property --border-subtle { syntax: "<color>"; inherits: true; initial-value: rgba(148, 170, 220, 0.14); }
-@property --text-primary { syntax: "<color>"; inherits: true; initial-value: #e6ecf7; }
-@property --text-secondary { syntax: "<color>"; inherits: true; initial-value: #8b97b0; }
-@property --accent { syntax: "<color>"; inherits: true; initial-value: #7cc4ff; }
-@property --accent-glow { syntax: "<color>"; inherits: true; initial-value: rgba(124, 196, 255, 0.35); }
-@property --accent-ink { syntax: "<color>"; inherits: true; initial-value: #05070d; }
-@property --hover { syntax: "<color>"; inherits: true; initial-value: rgba(148, 170, 220, 0.1); }
-@property --radius-panel { syntax: "<length>"; inherits: true; initial-value: 8px; }
-@property --radius-control { syntax: "<length>"; inherits: true; initial-value: 6px; }
-@property --title-tracking { syntax: "<length-percentage>"; inherits: true; initial-value: 0.04em; }
+:root {
+  /* ---------- Layer 1: Core Colors ---------- */
+  /* Primary — field green: young leaves to a deep hedge */
+  --primary-00: #F4F8EF;
+  --primary-50: #E9F2E0;
+  --primary-100: #D8E8CA;
+  --primary-150: #C5DCB1;
+  --primary-200: #AFCF96;
+  --primary-300: #88B76C;
+  --primary-350: #76AA5A;
+  --primary-400: #629B47;
+  --primary-450: #538D3C;
+  --primary-500: #457E32;
+  --primary-600: #386A29;
+  --primary-700: #2C5621;
+  --primary-800: #22431A;
+  --primary-850: #1C3816;
+  --primary-900: #162D12;
+  --primary-950: #10220E;
+  --primary-1000: #0A160A;
+  /* Secondary — earth: dry clay to dark tilled soil */
+  --secondary-00: #FAF6EF;
+  --secondary-50: #F3EADB;
+  --secondary-100: #E8D9C0;
+  --secondary-150: #DCC7A3;
+  --secondary-200: #CFB385;
+  --secondary-300: #B6945F;
+  --secondary-400: #9A7849;
+  --secondary-500: #7F6039;
+  --secondary-600: #664C2E;
+  --secondary-700: #4F3B24;
+  --secondary-800: #3B2C1C;
+  --secondary-850: #322517;
+  --secondary-900: #281E13;
+  --secondary-950: #1E170F;
+  --secondary-1000: #130F0A;
+  /* Accent — ripe wheat (the one accent; saturation < 80 %) */
+  --accent-00: #FCF8EC;
+  --accent-50: #F8EFD3;
+  --accent-100: #F1E1AE;
+  --accent-150: #EAD38B;
+  --accent-200: #E2C46A;
+  --accent-300: #D6AF45;
+  --accent-400: #C99E33;
+  --accent-500: #B38A2A;
+  --accent-600: #957223;
+  --accent-700: #775B1C;
+  --accent-800: #5A4516;
+  --accent-850: #4B3A13;
+  --accent-900: #3D2F10;
+  --accent-950: #2F240C;
+  --accent-1000: #1F1808;
+  /* Grayscale — straw-warm neutrals; the dark steps sit on the allowed dark backgrounds */
+  --grayscale-00: #FFFFFF;
+  --grayscale-50: #F7F8F4;
+  --grayscale-100: #EEF0E9;
+  --grayscale-150: #E3E6DC;
+  --grayscale-200: #D5D9CC;
+  --grayscale-250: #C6CBBB;
+  --grayscale-300: #AEB4A3;
+  --grayscale-400: #8E957F;
+  --grayscale-450: #7D8470;
+  --grayscale-500: #6A715F;
+  --grayscale-600: #565C4D;
+  --grayscale-700: #42473B;
+  --grayscale-750: #313131;
+  --grayscale-800: #272727;
+  --grayscale-850: #1F1F1F;
+  --grayscale-870: #181818;
+  --grayscale-900: #131209;
+  --grayscale-950: #0B0B07;
+  --grayscale-1000: #000000;
+  /* Semantic palettes */
+  --red-50: #FBECE9;
+  --red-100: #F5D2CC;
+  --red-400: #CC5A4A;
+  --red-500: #B8402F;
+  --red-600: #9C3325;
+  --red-700: #7D281D;
+  --green-50: #EAF4E6;
+  --green-100: #D2E8CA;
+  --green-400: #4F9A45;
+  --green-500: #3E8636;
+  --green-600: #32702B;
+  --green-700: #275A22;
+  --yellow-50: #FCF3DF;
+  --yellow-100: #F7E3B4;
+  --yellow-300: #E3B355;
+  --yellow-500: #C48A1C;
+  --yellow-600: #A67418;
+  --yellow-700: #845C13;
+
+  /* ---------- Layer 2: Color System (Light) — aliases only ---------- */
+  --cs-surface-page: var(--primary-00);
+  --cs-surface-card: var(--grayscale-00);
+  --cs-surface-subtle: var(--primary-50);
+  --cs-surface-hover: var(--primary-50);
+  --cs-surface-selected: var(--primary-100);
+  --cs-surface-inverted: var(--primary-800);
+  --cs-surface-accent-subtle: var(--accent-50);
+  --cs-text-primary: var(--primary-900);
+  --cs-text-secondary: var(--grayscale-600);
+  --cs-text-on-action: var(--grayscale-00);
+  --cs-text-inverted: var(--primary-00);
+  --cs-text-inverted-secondary: var(--primary-150);
+  --cs-text-link: var(--primary-600);
+  --cs-border-primary: var(--grayscale-200);
+  --cs-border-strong: var(--primary-300);
+  --cs-border-action: var(--primary-500);
+  --cs-action-primary: var(--primary-600);
+  --cs-action-primary-hover: var(--primary-700);
+  --cs-action-primary-click: var(--primary-800);
+  --cs-action-accent: var(--accent-400);
+  --cs-icon-primary: var(--primary-600);
+  --cs-icon-accent: var(--accent-500);
+  --cs-overlay-scrim: rgb(22 45 18 / 0.4);
+  --cs-success: var(--green-600);
+  --cs-success-subtle: var(--green-50);
+  --cs-warning: var(--yellow-700);
+  --cs-warning-subtle: var(--yellow-50);
+  --cs-error: var(--red-600);
+  --cs-error-subtle: var(--red-50);
+
+  /* Older names used across the components, now pointing at the roles above */
+  --paper: var(--cs-surface-card);
+  --paper-deep: var(--cs-surface-subtle);
+  --ink: var(--cs-text-primary);
+  --ink-soft: var(--cs-text-secondary);
+  --rule: var(--cs-border-primary);
+
+  /* Soil — Munsell 10YR, data not decoration: darker = more organic carbon (ui/soilColor.ts) */
+  --soil-1: #D6C3A0;
+  --soil-2: #B89A6E;
+  --soil-3: #8E6F4A;
+  --soil-4: #62492F;
+  --soil-5: #3E2C1E;
+  --subsoil: #C8B48E;
+
+  /* Crops — seed-packet colours by family (data); v3 §2.1: saturated, the main spots of screen 2 */
+  --crop-cereal: #E3A92B;
+  --crop-legume: #4E9A3A;
+  --crop-malva: #C9503E;
+  --crop-solan: #7A4FA3;
+  --crop-brassica: #B5B51F;
+  --crop-aster: #D98A1F;
+  --crop-borage: #4F7FA0;
+
+  /* v3 §2.1: the sky of screen 2 — three flat bands per season or weather (top to bottom),
+     like a screen-printed poster; never a gradient */
+  --sky-spring-1: #BFD8E6;
+  --sky-spring-2: #D9E8EC;
+  --sky-spring-3: #EEF2E6;
+  --sky-summer-1: #9FC6E0;
+  --sky-summer-2: #C8DDE6;
+  --sky-summer-3: #F1E7C9;
+  --sky-heat-1: #E9C77A;
+  --sky-heat-2: #F0D9A0;
+  --sky-heat-3: #F6E9C7;
+  --sky-autumn-1: #C9C2A8;
+  --sky-autumn-2: #DCD3B5;
+  --sky-autumn-3: #EDE3C8;
+  --sky-winter-1: #AEB9C2;
+  --sky-winter-2: #C8D0D6;
+  --sky-winter-3: #E3E7E8;
+  --sky-storm-1: #7F8E99;
+  --sky-storm-2: #98A6AF;
+  --sky-storm-3: #B9C3C8;
+  /* landscape: far and near hills, the sun, clouds, the field's edge */
+  --hill-far: #8FB27A;
+  --hill-near: #6E9A55;
+  --hill-far-dry: #C7B47E;
+  --hill-near-dry: #A99A62;
+  --hill-far-winter: #B9C2B4;
+  --hill-near-winter: #9DA898;
+  --mountain-far: #A9B8C4;
+  --mountain: #8A9DAD;
+  --mountain-snow: #F4F6F2;
+  --tree: #3E7A35;
+  --tree-dark: #2E5E28;
+  --tree-spring: #7DB257;
+  --tree-autumn: #D49A2E;
+  --tree-dry: #8E8A45;
+  --trunk: #5A4128;
+  --house-wall: #EDE4CF;
+  --house-roof: #B5523B;
+  --barn: #A4472F;
+  --barn-roof: #6B3A27;
+  --window: #3F5F7A;
+  --fence: #7A5B3A;
+  --sun: #F2C14E;
+  --cloud: #FBFBF7;
+  --cloud-storm: #6F7D87;
+  --bird: #3B4A3A;
+  --stubble: #D8C189;
+  --salt: #F4F1E6;
+
+  /* plants of the landscape (leaves are green for every crop; the family shows in flowers and fruit) */
+  --leaf: #4F8F38;
+  --leaf-dark: #3B7029;
+  --leaf-pale: #B5B25A;
+  --leaf-dry: #A8A46A;
+  --ripe: #D9B65A;
+  --boll: #FFFFFF;
+  --fruit-red: #D24A35;
+  --flower-white: #F7F3E8;
+  --flower-yellow: #F2CB3A;
+  --flower-purple: #8C6CC4;
+  --flower-pink: #E7A3B0;
+  --seed: #7A5B33;
+  --aryk: #3F7FAF;
+
+  /* v3 §2.3: physical shadows, ink only (opacity ≤ 0.35, blur ≤ 16 px) */
+  --shadow-packet: 0 1px 0 rgb(36 48 31 / 0.25);
+  --shadow-lifted: 0 10px 14px rgb(36 48 31 / 0.28), 0 2px 3px rgb(36 48 31 / 0.2);
+  --shadow-sheet: 0 2px 6px rgb(36 48 31 / 0.14);
+  --paper-sheet: #F5F6F1;
+
+  /* Signals */
+  --water: #2F6E9A;
+  --risk: var(--cs-error);
+  --caution: var(--cs-warning);
+  --good: var(--cs-success);
+}
+
+@property --bg-panel { syntax: "<color>"; inherits: true; initial-value: #F5F6F1; }
+@property --bg-panel-strong { syntax: "<color>"; inherits: true; initial-value: #E9ECE3; }
+@property --border-subtle { syntax: "<color>"; inherits: true; initial-value: #C9CEC0; }
+@property --text-primary { syntax: "<color>"; inherits: true; initial-value: #24301F; }
+@property --text-secondary { syntax: "<color>"; inherits: true; initial-value: #5F6B5A; }
+@property --accent { syntax: "<color>"; inherits: true; initial-value: #24301F; }
+@property --accent-glow { syntax: "<color>"; inherits: true; initial-value: #E9ECE3; }
+@property --accent-ink { syntax: "<color>"; inherits: true; initial-value: #F5F6F1; }
+@property --hover { syntax: "<color>"; inherits: true; initial-value: #E9ECE3; }
+@property --radius-panel { syntax: "<length>"; inherits: true; initial-value: 0px; }
+@property --radius-control { syntax: "<length>"; inherits: true; initial-value: 4px; }
+@property --title-tracking { syntax: "<length-percentage>"; inherits: true; initial-value: 0em; }
 
 [data-mood] {
   /* Semantic colours: identical in both moods (§2.3). */
@@ -28,6 +259,25 @@
   --bg-void: #05070d;
   --scrim: rgba(5, 7, 13, 0.6);
   --shadow-panel: 0 8px 32px rgba(0, 0, 0, 0.35);
+
+  /* Plan builder field (docs/UX.md §4): soil, plants and weather states. */
+  --field-soil-rich: #4a2f1e;
+  --field-soil-poor: #b58a5e;
+  --field-soil-wet: #2e1d12;
+  --field-crack: #6e5238;
+  --field-leaf-lush: #3f9f4a;
+  --field-leaf-pale: #d9c45a;
+  --field-leaf-ripe: #d8a943;
+  --field-cover: #6cbf5d;
+  --field-stubble: #c9ad74;
+  --field-rill: #d8c3a0;
+  --field-mud: #9c7a52;
+  --field-rain: #a9d4ff;
+  --field-rime: #f2f8ff;
+  --field-pest: #3b2a1f;
+  --field-sky-day: #9fd3ff;
+  --field-sky-hot: #f3d9a4;
+  --field-edge: #2b2018;
 
   /* Scene materials that are design choices rather than data (§6.4). */
   --scene-wood: #9a6b45;
@@ -63,11 +313,13 @@
   --ill-algae: #1d7a55;
   --ill-algae-light: #8ee0b8;
 
-  --font-display: "Space Grotesk", "Manrope", system-ui, sans-serif;
-  --font-ui: "Inter", system-ui, sans-serif;
-  --font-data: "JetBrains Mono", ui-monospace, monospace;
+  /* §3: Golos Text for text and numbers (tabular lining figures), Noto Serif for screen titles.
+     Literata lacks the Tajik ӣ ӯ ҳ ҷ, so the serif is Noto Serif (same role, §3). No monospace. */
+  --font-display: "Noto Serif", Georgia, serif;
+  --font-ui: "Golos Text", system-ui, sans-serif;
+  --font-data: "Golos Text", system-ui, sans-serif;
 
-  --ease-panel: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-panel: cubic-bezier(0.22, 1, 0.36, 1); /* ai-design-skills B7 base curve */
   --edge: 24px;
 
   font-family: var(--font-ui);
@@ -118,6 +370,69 @@
   --title-tracking: 0em;
 }
 
+/* The product: paper, ink, flat (docs/DESIGN.md v2). Old semantic names map onto v2 tokens,
+   so every component reads the same few colours. */
+[data-mood="field"] {
+  --bg-panel: var(--cs-surface-card);
+  --bg-panel-strong: var(--cs-surface-subtle);
+  --border-subtle: var(--cs-border-primary);
+  --text-primary: var(--cs-text-primary);
+  --text-secondary: var(--cs-text-secondary);
+  --accent: var(--cs-action-primary);
+  --accent-glow: var(--cs-surface-selected);
+  --accent-ink: var(--cs-text-on-action);
+  --hover: var(--cs-surface-hover);
+  /* Tailwind radii (rounded-xl / rounded-lg); inner = outer − gap (ai-design-skills B3) */
+  --radius-panel: 12px;
+  --radius-control: 8px;
+  --title-tracking: 0em;
+
+  --ok: var(--good);
+  --stress: var(--caution);
+  --lethal: var(--risk);
+  --data-real: var(--ink);
+  --data-estimate: var(--ink-soft);
+  --leaf: var(--crop-legume);
+  --soil: var(--soil-3);
+  --bg-void: var(--cs-surface-page);
+  --scrim: var(--cs-overlay-scrim);
+  --shadow-panel: none;
+
+  --field-soil-rich: var(--soil-5);
+  --field-soil-poor: var(--soil-1);
+  --field-soil-wet: var(--soil-4);
+  --field-crack: var(--soil-3);
+  --field-leaf-lush: var(--crop-legume);
+  --field-leaf-pale: var(--crop-brassica);
+  --field-leaf-ripe: var(--crop-cereal);
+  --field-cover: var(--crop-legume);
+  --field-stubble: var(--soil-1);
+  --field-rill: var(--soil-1);
+  --field-mud: var(--soil-3);
+  --field-rain: var(--water);
+  --field-rime: var(--paper);
+  --field-pest: var(--soil-5);
+  --field-sky-day: var(--paper);
+  --field-sky-hot: var(--paper-deep);
+  --field-edge: var(--ink);
+
+  --series-1: var(--water);
+  --series-2: var(--crop-malva);
+  --series-3: var(--crop-legume);
+  --series-4: var(--crop-solan);
+  --series-5: var(--caution);
+
+  font-variant-numeric: tabular-nums lining-nums;
+  line-height: 1.45;
+  background: var(--cs-surface-page);
+}
+
+[data-mood="field"] h1,
+[data-mood="field"] h2,
+[data-mood="field"] h3 {
+  line-height: 1.15;
+}
+
 @media (max-width: 640px) {
   [data-mood] { --edge: 12px; }
 }
@@ -133,12 +448,17 @@
 
 .font-data {
   font-family: var(--font-data);
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: tabular-nums lining-nums;
 }
 
 @keyframes panel-in {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: none; }
+}
+
+@keyframes ruler {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(300%); }
 }
 
 @keyframes spin-slow { to { transform: rotate(360deg); } }
@@ -147,4 +467,64 @@
   from { opacity: 0; transform: translateY(30vh) scale(0.6); }
   40% { opacity: 0.6; }
   to { opacity: 0; transform: translateY(-40vh) scale(1.8); }
+}
+
+/* docs/DESIGN.md §8: the one visible motion — the topsoil redraws when a card lands (400 ms). */
+.soil-horizon {
+  transition: fill 400ms ease-out, height 400ms ease-out, y 400ms ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .soil-horizon { transition: none; }
+}
+
+
+/* ---------- v3 §2.5: motion that shows change or keeps the world alive ---------- */
+@keyframes sway { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
+@keyframes drift { from { transform: translateX(-160px); } to { transform: translateX(1160px); } }
+@keyframes fly { 0% { transform: translate(-80px, 0); } 50% { transform: translate(520px, -30px); } 100% { transform: translate(1120px, 10px); } }
+@keyframes flap { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(-0.6); } }
+@keyframes rainfall { from { transform: translate(0, -40px); } to { transform: translate(-30px, 120px); } }
+@keyframes snowfall { from { transform: translate(0, -30px); } to { transform: translate(14px, 110px); } }
+@keyframes shimmer { 0%, 100% { transform: translateY(0) scaleX(1); } 50% { transform: translateY(-4px) scaleX(1.04); } }
+@keyframes bolt { 0%, 86%, 100% { opacity: 0; } 88%, 92% { opacity: 1; } }
+@keyframes seed-fall {
+  from { transform: translate(var(--sx), var(--sy)) scale(1.4); opacity: 0.2; }
+  70% { opacity: 1; }
+  to { transform: translate(0, 0) scale(1); opacity: 0; }
+}
+@keyframes sprout-up { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes dice-roll {
+  0% { transform: rotate(0) translateY(0); }
+  30% { transform: rotate(240deg) translateY(-10px); }
+  60% { transform: rotate(480deg) translateY(0); }
+  80% { transform: rotate(560deg) translateY(-3px); }
+  100% { transform: rotate(720deg) translateY(0); }
+}
+@keyframes draw-on { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes slosh { 0%, 100% { transform: skewY(0); } 25% { transform: skewY(-4deg); } 75% { transform: skewY(3deg); } }
+
+.scene-sway { transform-box: fill-box; transform-origin: 50% 100%; animation: sway 4.5s ease-in-out infinite; }
+.scene-cloud { animation: drift linear infinite; }
+.scene-bird { animation: fly 14s linear infinite; }
+.scene-bird path { transform-box: fill-box; transform-origin: 50% 50%; animation: flap 0.5s ease-in-out infinite; }
+.scene-rain { animation: rainfall 0.7s linear infinite; }
+.scene-snow { animation: snowfall 2.6s linear infinite; }
+.scene-heat { transform-box: fill-box; transform-origin: 50% 50%; animation: shimmer 1.6s ease-in-out infinite; }
+.scene-bolt { animation: bolt 3.2s linear infinite; }
+.scene-seed { animation: seed-fall 520ms cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.scene-sprout { transform-box: fill-box; transform-origin: 50% 100%; animation: sprout-up 420ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.scene-plant { transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1); transform-box: fill-box; transform-origin: 50% 100%; }
+.dice-rolling { animation: dice-roll 650ms cubic-bezier(0.22, 1, 0.36, 1); }
+.draw-on { transform-box: view-box; transform-origin: 0 50%; animation: draw-on 300ms ease-out both; }
+.instrument-slosh { transform-box: fill-box; transform-origin: 50% 100%; animation: slosh 700ms ease-in-out; }
+
+/* «Пауза мира» and reduced motion stop the quiet life; changes still show, instantly */
+.world-paused .scene-sway, .world-paused .scene-cloud, .world-paused .scene-bird, .world-paused .scene-bird path,
+.world-paused .scene-rain, .world-paused .scene-snow, .world-paused .scene-heat, .world-paused .scene-bolt {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scene-sway, .scene-cloud, .scene-bird, .scene-bird path, .scene-rain, .scene-snow, .scene-heat, .scene-bolt,
+  .scene-seed, .scene-sprout, .dice-rolling, .draw-on, .instrument-slosh { animation: none; }
+  .scene-plant { transition: none; }
 }

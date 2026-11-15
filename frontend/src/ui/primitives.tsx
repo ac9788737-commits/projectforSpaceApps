@@ -3,21 +3,14 @@ import { ChevronLeft, ChevronRight, CircleCheck, CircleX, TriangleAlert, type Lu
 import { useId, useState, type ButtonHTMLAttributes, type HTMLAttributes, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-// ---------- Glass panel (§5) ----------
+// ---------- Panel (docs/DESIGN.md §4): a sheet of paper — flat, a rule line, no shadow, no blur ----------
 
-export function GlassPanel({ className, strong, ...props }: HTMLAttributes<HTMLDivElement> & { strong?: boolean }) {
-  return (
-    <div
-      className={cn(
-        "pointer-events-auto rounded-pnl border border-subtle text-fg shadow-[var(--shadow-panel)] backdrop-blur-[16px] backdrop-saturate-[1.4]",
-        strong ? "bg-panel-strong" : "bg-panel",
-        "animate-[panel-in_220ms_var(--ease-panel)] motion-reduce:animate-none",
-        className,
-      )}
-      {...props}
-    />
-  );
+export function Panel({ className, strong, ...props }: HTMLAttributes<HTMLDivElement> & { strong?: boolean }) {
+  return <div className={cn("pointer-events-auto rounded-pnl border border-subtle text-fg", strong ? "bg-panel-strong" : "bg-panel", className)} {...props} />;
 }
+
+/** The Lab still imports the old name; it is the same flat panel now. */
+export const GlassPanel = Panel;
 
 /** Side panel that folds into an icon button (§4). */
 export function CollapsiblePanel({
@@ -49,7 +42,7 @@ export function CollapsiblePanel({
     );
   }
   return (
-    <GlassPanel id={id} className={cn("w-full p-4 sm:w-80", className)}>
+    <Panel id={id} className={cn("w-full p-4 sm:w-80", className)}>
       <div className="mb-3 flex items-center gap-2">
         <Icon size={16} strokeWidth={1.5} className="text-fg-muted" aria-hidden />
         <h2 className="font-head text-sm font-semibold tracking-[var(--title-tracking)] text-fg">{title}</h2>
@@ -58,30 +51,32 @@ export function CollapsiblePanel({
         </Button>
       </div>
       {children}
-    </GlassPanel>
+    </Panel>
   );
 }
 
-// ---------- Buttons (§5): 40 px, icon + text ----------
+// ---------- Buttons (§4): 40 px, radius 4 px, ink on paper, no glow ----------
 
 const buttonVariants = cva(
-  "inline-flex cursor-pointer items-center justify-center gap-2 rounded-ctl text-sm font-medium transition-[background-color,color,box-shadow,opacity] duration-[120ms] ease-out disabled:cursor-not-allowed disabled:opacity-40 select-none",
+  "inline-flex cursor-pointer items-center justify-center gap-2 rounded-ctl text-sm font-medium transition-[background-color,color,border-color] duration-300 ease-[var(--ease-panel)] disabled:cursor-not-allowed disabled:opacity-40 select-none",
   {
     variants: {
       variant: {
-        primary: "bg-accent text-[var(--accent-ink)] hover:shadow-[0_0_0_4px_var(--accent-glow)]",
-        secondary: "border border-subtle bg-panel text-fg backdrop-blur-[16px] hover:bg-hover",
+        primary: "border border-accent bg-accent text-[var(--accent-ink)] hover:bg-[color-mix(in_oklab,var(--accent)_88%,var(--bg-panel))]",
+        secondary: "border border-subtle bg-panel text-fg hover:border-[var(--text-secondary)] hover:bg-hover",
         ghost: "text-fg-muted hover:bg-hover hover:text-fg",
+        /* the wheat accent: one main action on the dark green bar */
+        accent: "border border-farm-accent bg-farm-accent text-[var(--primary-900)] hover:bg-[var(--accent-300)]",
       },
       size: {
         default: "h-10 px-4",
-        sm: "h-10 px-3 text-[13px]",
+        sm: "h-10 px-3 text-xs",
         icon: "h-10 w-10 shrink-0",
       },
       pressed: { true: "", false: "" },
     },
     compoundVariants: [
-      { variant: "secondary", pressed: true, className: "border-accent bg-glow text-fg" },
+      { variant: "secondary", pressed: true, className: "border-accent bg-hover text-fg" },
       { variant: "ghost", pressed: true, className: "bg-hover text-fg" },
     ],
     defaultVariants: { variant: "secondary", size: "default", pressed: false },
@@ -127,13 +122,14 @@ export function StatusTag({ status, label }: { status: Status; label?: string })
 // ---------- Data source (§2.3, §5 Data Row) ----------
 
 export type Source = "real" | "estimate" | "hypothetical";
+/** §2.5: measured values are solid, model estimates dashed — the mark, not a colour, carries it. */
 export const SOURCE_META: Record<Source, { label: string; dot: string; text: string; border: string }> = {
-  real: { label: "реальные данные", dot: "bg-real", text: "text-real", border: "border-real/50" },
-  estimate: { label: "оценка / модель", dot: "bg-estimate", text: "text-estimate", border: "border-estimate/50" },
-  hypothetical: { label: "гипотетический мир", dot: "bg-hypo", text: "text-hypo", border: "border-hypo/50" },
+  real: { label: "реальные данные", dot: "bg-fg", text: "text-fg", border: "border-solid border-fg" },
+  estimate: { label: "оценка / модель", dot: "border border-dashed border-fg-muted", text: "text-fg-muted", border: "border-dashed border-fg-muted" },
+  hypothetical: { label: "гипотетический мир", dot: "border border-dotted border-fg-muted", text: "text-fg-muted", border: "border-dotted border-fg-muted" },
 };
 
-/** Small coloured dot; hover or focus shows where the number comes from. */
+/** Small mark (solid = data, dashed = estimate); hover or focus shows where the number comes from. */
 export function SourceDot({ source, detail }: { source: Source; detail?: string }) {
   const meta = SOURCE_META[source];
   const tip = useId();
@@ -143,14 +139,14 @@ export function SourceDot({ source, detail }: { source: Source; detail?: string 
         type="button"
         aria-describedby={tip}
         aria-label={meta.label}
-        className="-m-2.5 inline-flex size-[30px] cursor-help items-center justify-center rounded-full"
+        className="-m-2.5 inline-flex size-[30px] cursor-help items-center justify-center rounded-ctl"
       >
-        <span className={cn("size-2 rounded-full", meta.dot)} />
+        <span className={cn("size-2 rounded-[1px]", meta.dot)} />
       </button>
       <span
         role="tooltip"
         id={tip}
-        className="pointer-events-none absolute bottom-full right-0 z-30 mb-2 hidden w-max max-w-60 rounded-ctl border border-subtle bg-panel-strong px-2.5 py-1.5 text-xs text-fg shadow-lg group-focus-within:block group-hover:block"
+        className="pointer-events-none absolute bottom-full right-0 z-30 mb-2 hidden w-max max-w-60 rounded-ctl border border-subtle bg-panel px-2.5 py-1.5 text-xs text-fg group-focus-within:block group-hover:block"
       >
         <span className={cn("font-medium", meta.text)}>{meta.label}</span>
         {detail && <span className="mt-0.5 block text-fg-muted">{detail}</span>}
@@ -162,8 +158,7 @@ export function SourceDot({ source, detail }: { source: Source; detail?: string 
 export function SourceBadge({ source, className }: { source: Source; className?: string }) {
   const meta = SOURCE_META[source];
   return (
-    <span className={cn("inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[11px] leading-4 whitespace-nowrap", meta.text, meta.border, className)}>
-      <span className={cn("size-1.5 rounded-full", meta.dot)} aria-hidden />
+    <span className={cn("inline-flex items-center gap-1.5 rounded-ctl border px-1.5 py-0.5 text-xs leading-4 whitespace-nowrap", meta.text, meta.border, className)}>
       {meta.label}
     </span>
   );
@@ -212,7 +207,7 @@ export function Breadcrumbs({ items, className }: { items: Crumb[]; className?: 
 export function ObjectTitle({ children, kicker, className }: { children: ReactNode; kicker?: ReactNode; className?: string }) {
   return (
     <div className={cn("min-w-0", className)}>
-      {kicker && <p className="mb-1 text-xs uppercase tracking-[0.12em] text-fg-muted">{kicker}</p>}
+      {kicker && <p className="mb-1 text-xs text-fg-muted">{kicker}</p>}
       <h1 className="font-head text-[28px] font-semibold leading-[1.05] tracking-[var(--title-tracking)] text-fg [overflow-wrap:anywhere] sm:text-[40px]">{children}</h1>
     </div>
   );

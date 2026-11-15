@@ -1,0 +1,4 @@
+id,name_ru,efficiency,cost_usd_ha_yr,reference,estimate,notes
+none,Без полива (богара),0,0,,false,No irrigation
+furrow,Полив по бороздам,0.6,40,"FAO Irrigation Water Management Training Manual 4 (Brouwer et al. 1989), field application efficiency: surface irrigation 60 %",true,"Efficiency from FAO; yearly cost (field work, canal fees) is an estimate"
+drip,Капельный полив,0.9,180,"FAO Irrigation Water Management Training Manual 4 (Brouwer et al. 1989), field application efficiency: drip irrigation 90 %",true,"Efficiency from FAO; yearly cost (lines, filters, energy, amortisation) is an estimate"

@@ -1,7 +1,7 @@
 import { RoundedBox, Text } from "@react-three/drei";
 import { useLayoutEffect, useMemo } from "react";
 import * as THREE from "three";
-import interCyrillic from "@fontsource/inter/files/inter-cyrillic-500-normal.woff?url";
+import interCyrillic from "@fontsource/golos-text/files/golos-text-cyrillic-500-normal.woff?url";
 import type { Crop } from "@/api/client";
 import { UNDERGROUND_ORGANS } from "@/plants";
 import type { CropTraits } from "@/plants/appearance";

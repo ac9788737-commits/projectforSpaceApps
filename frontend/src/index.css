@@ -3,69 +3,36 @@
 
 :root {
   color-scheme: light;
-  --page: #f9f9f7;
-  --surface: #fcfcfb;
-  --surface-2: #f0efec;
-  --ink: #0b0b0b;
-  --ink-2: #52514e;
-  --ink-3: #6f6e69;
-  --grid: #e1e0d9;
-  --axis: #c3c2b7;
-  --border: rgba(11, 11, 11, 0.1);
-  --accent: #2a78d6;
-  --accent-ink: #ffffff;
-  --series-1: #2a78d6;
-  --series-2: #eb6834;
-  --par-band: rgba(27, 175, 122, 0.14);
-  --good: #0ca30c;
-  --warning: #fab219;
-  --critical: #d03b3b;
-  --good-text: #006300;
-  --warning-text: #7a5400;
-  --critical-text: #a92a2a;
-  --seq-1: #cde2fb;
-  --seq-2: #86b6ef;
-  --seq-3: #3987e5;
-  --seq-4: #1c5cab;
-  --seq-5: #0d366b;
-  --seq-1-ink: #0b0b0b;
-  --seq-2-ink: #0b0b0b;
-  --seq-3-ink: #0b0b0b;
-  --seq-4-ink: #ffffff;
-  --seq-5-ink: #ffffff;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    --page: #0d0d0d;
-    --surface: #1a1a19;
-    --surface-2: #2c2c2a;
-    --ink: #f0efec;
-    --ink-2: #c3c2b7;
-    --ink-3: #a3a29a;
-    --grid: #2c2c2a;
-    --axis: #383835;
-    --border: rgba(255, 255, 255, 0.1);
-    --accent: #3987e5;
-    --accent-ink: #ffffff;
-    --series-1: #3987e5;
-    --series-2: #d95926;
-    --par-band: rgba(25, 158, 112, 0.2);
-    --good-text: #4fce4f;
-    --warning-text: #fab219;
-    --critical-text: #f08a8a;
-    --seq-1: #184f95;
-    --seq-2: #256abf;
-    --seq-3: #5598e7;
-    --seq-4: #9ec5f4;
-    --seq-5: #cde2fb;
-    --seq-1-ink: #ffffff;
-    --seq-2-ink: #ffffff;
-    --seq-3-ink: #0b0b0b;
-    --seq-4-ink: #0b0b0b;
-    --seq-5-ink: #0b0b0b;
-  }
+  /* Pages without a data-mood (Lab tables) read the same v2 tokens (styles/tokens.css). */
+  --page: var(--cs-surface-page);
+  --surface: var(--cs-surface-card);
+  --surface-2: var(--paper-deep);
+  --ink-2: var(--ink-soft);
+  --ink-3: var(--ink-soft);
+  --grid: var(--rule);
+  --axis: var(--rule);
+  --border: var(--rule);
+  --accent: var(--water);
+  --accent-ink: var(--paper);
+  --series-1: var(--water);
+  --series-2: var(--crop-malva);
+  --par-band: rgb(63 122 58 / 0.14);
+  --warning: var(--caution);
+  --critical: var(--risk);
+  --good-text: var(--good);
+  --warning-text: var(--caution);
+  --critical-text: var(--risk);
+  /* sequential water ramp for maps and tables, light to dark */
+  --seq-1: #DCE7EE;
+  --seq-2: #A9C4D6;
+  --seq-3: #6E9AB8;
+  --seq-4: #2F6E9A;
+  --seq-5: #1D4766;
+  --seq-1-ink: var(--ink);
+  --seq-2-ink: var(--ink);
+  --seq-3-ink: var(--ink);
+  --seq-4-ink: var(--paper);
+  --seq-5-ink: var(--paper);
 }
 
 @theme inline {
@@ -81,7 +48,50 @@
   --color-good: var(--good-text);
   --color-warn: var(--warning-text);
   --color-crit: var(--critical-text);
-  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans: "Golos Text", system-ui, sans-serif;
+  --font-serif: "Noto Serif", Georgia, serif;
+
+  /* v2 tokens (docs/DESIGN.md §2) as Tailwind colours */
+  --color-paper: var(--paper);
+  /* farm Color System roles (styles/tokens.css, layer 2) */
+  --color-farm-page: var(--cs-surface-page);
+  --color-farm-card: var(--cs-surface-card);
+  --color-farm-subtle: var(--cs-surface-subtle);
+  --color-farm-selected: var(--cs-surface-selected);
+  --color-farm-inverted: var(--cs-surface-inverted);
+  --color-farm-on-inverted: var(--cs-text-inverted);
+  --color-farm-on-inverted-2: var(--cs-text-inverted-secondary);
+  --color-farm-accent: var(--cs-action-accent);
+  --color-farm-accent-subtle: var(--cs-surface-accent-subtle);
+  --color-farm-border-strong: var(--cs-border-strong);
+  --color-farm-icon: var(--cs-icon-primary);
+  --color-farm-warning-subtle: var(--cs-warning-subtle);
+  --color-farm-error-subtle: var(--cs-error-subtle);
+  --color-farm-success-subtle: var(--cs-success-subtle);
+  --color-paper-deep: var(--paper-deep);
+  --color-ink-soft: var(--ink-soft);
+  --color-rule: var(--rule);
+  --color-soil-1: var(--soil-1);
+  --color-soil-2: var(--soil-2);
+  --color-soil-3: var(--soil-3);
+  --color-soil-4: var(--soil-4);
+  --color-soil-5: var(--soil-5);
+  --color-crop-cereal: var(--crop-cereal);
+  --color-crop-legume: var(--crop-legume);
+  --color-crop-malva: var(--crop-malva);
+  --color-crop-solan: var(--crop-solan);
+  --color-crop-brassica: var(--crop-brassica);
+  --color-water: var(--water);
+  --color-risk: var(--risk);
+  --color-caution: var(--caution);
+  /* §3 type scale 13 / 15 / 17 / 21 / 28 / 37 */
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 21px;
+  --text-xl: 21px;
+  --text-2xl: 28px;
+  --text-3xl: 37px;
 
   /* Design-system tokens (docs/DESIGN.md), resolved per data-mood. */
   --color-panel: var(--bg-panel);
@@ -118,7 +128,7 @@ body {
 }
 
 .tabular {
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: tabular-nums lining-nums;
 }
 
 a:focus-visible,

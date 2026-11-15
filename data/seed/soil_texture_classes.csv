@@ -1,0 +1,13 @@
+id,name_ru,theta_fc,theta_wp,rew_mm,tew_mm,hydro_group,estimate,reference,notes
+sand,песок,0.12,0.045,4.5,9,A,false,"FAO-56 Table 19 (midpoints) — https://www.fao.org/4/x0490e/x0490e0c.htm","Hydrologic soil group is an estimate from texture (USDA NRCS NEH-630 Ch.7 gives groups by texture as a guide)"
+loamy_sand,супесь песчаная,0.15,0.065,6,11.5,A,false,"FAO-56 Table 19 (midpoints)",
+sandy_loam,супесь,0.23,0.11,8,17.5,B,false,"FAO-56 Table 19 (midpoints)",
+loam,суглинок,0.25,0.12,9,19,B,false,"FAO-56 Table 19 (midpoints)",
+silt_loam,суглинок пылеватый,0.29,0.15,9.5,21.5,B,false,"FAO-56 Table 19 (midpoints)",
+silt,пылеватая почва,0.32,0.17,9.5,24,B,false,"FAO-56 Table 19 (midpoints)",
+sandy_clay_loam,суглинок песчанистый тяжёлый,0.27,0.14,9,21,C,true,,"Not in FAO-56 Table 19: between sandy loam and clay loam (estimate)"
+clay_loam,суглинок тяжёлый,0.32,0.18,9.5,23.5,C,true,,"Not in FAO-56 Table 19: between loam and silty clay loam (estimate)"
+silty_clay_loam,суглинок пылеватый тяжёлый,0.335,0.205,9.5,24.5,C,false,"FAO-56 Table 19 (midpoints)",
+sandy_clay,глина песчанистая,0.32,0.21,10,24,D,true,,"Not in FAO-56 Table 19: close to clay (estimate)"
+silty_clay,глина пылеватая,0.36,0.23,10,25,D,false,"FAO-56 Table 19 (midpoints)",
+clay,глина,0.36,0.22,10,25.5,D,false,"FAO-56 Table 19 (midpoints)",

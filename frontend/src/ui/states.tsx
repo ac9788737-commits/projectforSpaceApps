@@ -1,48 +1,40 @@
 import { CloudOff, RotateCcw } from "lucide-react";
 import type { ReactNode } from "react";
 import { LogoMark } from "./Logo";
-import { Button, GlassPanel } from "./primitives";
+import { Button, Panel } from "./primitives";
 
-/** §9 Loading: dark screen, logo, a slowly orbiting dot-planet, one calm line. */
-export function LoadingScreen({ text = "Рассчитываем орбиты…" }: { text?: string }) {
+/** Loading: paper, the name, one calm line; no orbiting planets (docs/DESIGN.md §8). */
+export function LoadingScreen({ text = "Загружаю…" }: { text?: string }) {
   return (
-    <div data-mood="space" className="grid h-dvh w-full place-items-center bg-void" role="status">
-      <div className="flex flex-col items-center gap-5">
-        <div className="relative size-20">
-          <LogoMark size={80} className="text-fg-muted" />
-          <span className="absolute inset-0 animate-[spin-slow_6s_linear_infinite] motion-reduce:animate-none">
-            <span className="absolute left-1/2 top-0 size-2.5 -translate-x-1/2 rounded-full bg-accent shadow-[0_0_12px_var(--accent-glow)]" />
-          </span>
-        </div>
-        <p className="font-head text-sm tracking-[0.12em] text-fg-muted uppercase">AstroCrop</p>
-        <p className="text-sm text-fg">{text}</p>
+    <div data-mood="field" className="grid h-dvh w-full place-items-center bg-panel text-fg" role="status">
+      <div className="flex flex-col items-center gap-2">
+        <LogoMark size={48} className="text-fg-muted" />
+        <p className="font-head text-lg">WhatCropNext</p>
+        <p className="text-sm text-fg-muted">{text}</p>
       </div>
     </div>
   );
 }
 
-/** Soft in-scene loading line (data still coming, scene already visible). */
+/** Loading line: a short ruler that fills, like a progress mark on a form. */
 export function LoadingLine({ text }: { text: string }) {
   return (
-    <GlassPanel className="flex items-center gap-3 px-4 py-3 text-sm" role="status">
-      <span className="relative size-4">
-        <span className="absolute inset-0 rounded-full border border-subtle" />
-        <span className="absolute inset-0 animate-[spin-slow_2.4s_linear_infinite] motion-reduce:animate-none">
-          <span className="absolute left-1/2 top-[-2px] size-1.5 -translate-x-1/2 rounded-full bg-accent" />
-        </span>
+    <Panel className="flex items-center gap-3 px-4 py-3 text-sm" role="status">
+      <span className="relative h-1 w-10 overflow-hidden bg-hover" aria-hidden>
+        <span className="absolute inset-y-0 left-0 w-1/3 bg-fg-muted motion-safe:animate-[ruler_1.2s_ease-in-out_infinite]" />
       </span>
       {text}
-    </GlassPanel>
+    </Panel>
   );
 }
 
 /** §9 Source error: a soft plaque, never a blocking error. */
 export function SourceNotice({ children }: { children: ReactNode }) {
   return (
-    <GlassPanel className="flex items-start gap-2 px-3 py-2 text-xs leading-snug text-fg-muted" role="status">
+    <Panel className="flex items-start gap-2 px-3 py-2 text-xs leading-snug text-fg-muted" role="status">
       <CloudOff size={16} strokeWidth={1.5} className="mt-px shrink-0 text-stress" aria-hidden />
       <span>{children}</span>
-    </GlassPanel>
+    </Panel>
   );
 }
 
@@ -57,7 +49,7 @@ export function NoDataPanel({
   onPick: (id: string) => void;
 }) {
   return (
-    <GlassPanel className="w-full max-w-sm p-4">
+    <Panel className="w-full max-w-sm p-4">
       <p className="mb-3 text-sm leading-snug">{question}</p>
       <div className="flex flex-wrap gap-2">
         {options.map((o) => (
@@ -66,7 +58,7 @@ export function NoDataPanel({
           </Button>
         ))}
       </div>
-    </GlassPanel>
+    </Panel>
   );
 }
 

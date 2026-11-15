@@ -1,0 +1,5 @@
+id,threshold,unit,estimate,reference,notes
+clay_pct_min,30,% clay in 0–30 cm (SoilGrids),true,"Direction: FAO Irrigation and Drainage Paper 29 Rev.1 (Ayers & Westcot 1985) — salinity builds up where drainage is restricted; heavy soils drain slowly","Threshold for a «heavy» soil is an estimate"
+et0_mm_min,1200,mm/yr reference ET (FAO-56 from NASA POWER),true,"Direction: FAO-29 — salts accumulate where evaporation greatly exceeds rainfall","Threshold for an arid climate is an estimate"
+irrigation_m3_min,5000,m3/ha/yr applied,true,"Direction: FAO-29 — more irrigation water brings more salt unless it is leached and drained","Estimate"
+furrow_counts,1,flag,true,"Surface (furrow) irrigation over-wets the soil and raises the water table (FAO-29, drainage chapter)","Furrow irrigation alone is enough as the water trigger"

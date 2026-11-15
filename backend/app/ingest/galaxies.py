@@ -18,7 +18,7 @@ from app.models.db import Planet, Star
 from app.physics.climate import habitable_zone_au
 
 SOURCE = "galaxies"
-SOURCE_LABEL = "AstroCrop generator (hypothetical, estimate)"
+SOURCE_LABEL = "WhatCropNext generator (hypothetical, estimate)"
 SOURCE_URL = ""
 RETRIEVED_AT = "2026-11-09"
 BOOTSTRAP_COUNT = 12

@@ -14,7 +14,7 @@ from sqlmodel import Session
 from app import config
 from app.models.db import IngestLog
 
-USER_AGENT = "AstroCrop/0.1 (research prototype)"
+USER_AGENT = "WhatCropNext/0.1 (research prototype)"
 TIMEOUT_S = 120.0
 
 

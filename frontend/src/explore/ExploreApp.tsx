@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber";
-import { Gauge, Table2 } from "lucide-react";
+import { Gauge, Table2, Sprout } from "lucide-react";
 import { Suspense, useEffect, type ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import * as THREE from "three";
@@ -114,7 +114,7 @@ export default function ExploreApp() {
   useKeyboard(route);
 
   useEffect(() => {
-    document.title = "AstroCrop — путешествие";
+    document.title = "WhatCropNext — путешествие";
     return () => {
       document.body.style.cursor = "";
     };
@@ -158,7 +158,7 @@ export default function ExploreApp() {
         <>
           <TopZone>
             <GlassPanel className="flex h-12 min-w-0 items-center gap-2 pl-3 pr-1">
-              <Link to="/universe" aria-label="AstroCrop — во Вселенную" className="shrink-0 rounded-ctl">
+              <Link to="/universe" aria-label="WhatCropNext — во Вселенную" className="shrink-0 rounded-ctl">
                 <Logo compact={isMobile} />
               </Link>
               <span className="mx-1 hidden h-5 w-px bg-[var(--border-subtle)] sm:block" aria-hidden />
@@ -167,6 +167,14 @@ export default function ExploreApp() {
             <div className="pointer-events-auto ml-auto flex gap-2">
               <SearchDialog />
               <QualityToggle />
+              <Link
+                to="/fields"
+                aria-label="Планировщик севооборота"
+                className="inline-flex h-10 items-center gap-2 rounded-ctl border border-subtle bg-panel px-3 text-sm text-fg backdrop-blur-[16px] transition-colors duration-[120ms] hover:bg-hover"
+              >
+                <Sprout size={16} strokeWidth={1.5} aria-hidden />
+                <span className="hidden lg:inline">Поля</span>
+              </Link>
               <Link
                 to="/planets"
                 aria-label="Таблицы"

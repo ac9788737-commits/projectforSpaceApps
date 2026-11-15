@@ -1,7 +1,7 @@
 {
  "openapi": "3.1.0",
  "info": {
-  "title": "AstroCrop API",
+  "title": "WhatCropNext API",
   "description": "Как будет расти культура X на планете Y при сценарии Z?",
   "version": "0.1.0"
  },
@@ -361,6 +361,1053 @@
          },
          "type": "array",
          "title": "Response Generate Planets Galaxies Generate Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/fields": {
+   "get": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "List Fields",
+    "operationId": "list_fields_fields_get",
+    "parameters": [
+     {
+      "name": "lang",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "default": "ru",
+       "title": "Lang"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "additionalProperties": true
+         },
+         "title": "Response List Fields Fields Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "Create Field",
+    "operationId": "create_field_fields_post",
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/FieldIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "201": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Create Field Fields Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/fields/{fid}": {
+   "get": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "Get Field",
+    "operationId": "get_field_fields__fid__get",
+    "parameters": [
+     {
+      "name": "fid",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Fid"
+      }
+     },
+     {
+      "name": "lang",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "default": "ru",
+       "title": "Lang"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Get Field Fields  Fid  Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/fields/{fid}/load": {
+   "post": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "Load Field",
+    "description": "Download (or reuse cached) NASA POWER, SoilGrids and terrain for the field.",
+    "operationId": "load_field_fields__fid__load_post",
+    "parameters": [
+     {
+      "name": "fid",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Fid"
+      }
+     },
+     {
+      "name": "offline",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": false,
+       "title": "Offline"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Load Field Fields  Fid  Load Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/fields/{fid}/data-card": {
+   "get": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "Data Card",
+    "operationId": "data_card_fields__fid__data_card_get",
+    "parameters": [
+     {
+      "name": "fid",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Fid"
+      }
+     },
+     {
+      "name": "offline",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": false,
+       "title": "Offline"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Data Card Fields  Fid  Data Card Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/fields/{fid}/history": {
+   "get": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "History",
+    "description": "10–20 years of the field: bare soil, heat, drought, frost, vulnerable windows (§3.1).",
+    "operationId": "history_fields__fid__history_get",
+    "parameters": [
+     {
+      "name": "fid",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Fid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response History Fields  Fid  History Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/fields/{fid}/plan": {
+   "post": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "Plan",
+    "description": "Generate and rank rotations for the farmer's priorities on this field (§3.2, §4).",
+    "operationId": "plan_fields__fid__plan_post",
+    "parameters": [
+     {
+      "name": "fid",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Fid"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ProfileIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Plan Fields  Fid  Plan Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/explain": {
+   "post": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "Explain Scheme",
+    "description": "«Почему это место?»: text from computed numbers only (Claude if a key is set).",
+    "operationId": "explain_scheme_explain_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ExplainIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Explain Scheme Explain Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/fields/{fid}/gaps": {
+   "get": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "Gaps",
+    "description": "«Пробелы в данных и риски: что проверить агроному на месте» (§5.2).",
+    "operationId": "gaps_fields__fid__gaps_get",
+    "parameters": [
+     {
+      "name": "fid",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Fid"
+      }
+     },
+     {
+      "name": "lang",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "default": "ru",
+       "title": "Lang"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Gaps Fields  Fid  Gaps Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/rotation/quick": {
+   "post": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "Rotation Quick",
+    "description": "Instant evaluation of one plan for the builder: 4 indicators, 20 years, links, playback.",
+    "operationId": "rotation_quick_rotation_quick_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/QuickIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Rotation Quick Rotation Quick Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/rotation/deck": {
+   "get": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "Rotation Deck",
+    "description": "Crop cards; with a field, each card says whether it needs irrigation there.",
+    "operationId": "rotation_deck_rotation_deck_get",
+    "parameters": [
+     {
+      "name": "field_id",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Field Id"
+      }
+     },
+     {
+      "name": "lang",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "default": "ru",
+       "title": "Lang"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "additionalProperties": true
+         },
+         "title": "Response Rotation Deck Rotation Deck Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/irrigation/methods": {
+   "get": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "Irrigation List",
+    "operationId": "irrigation_list_irrigation_methods_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Irrigation List Irrigation Methods Get"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/rotation/advice": {
+   "post": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "Rotation Advice",
+    "description": "«Подобрать лучший план»: a fast optimiser pass for the chosen priorities.",
+    "operationId": "rotation_advice_rotation_advice_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/AdviceIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Rotation Advice Rotation Advice Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/rotation/fix": {
+   "post": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "Rotation Fix",
+    "description": "«Чем заменить?» for one cell of the plan (docs/IMPROVEMENTS.md B7).",
+    "operationId": "rotation_fix_rotation_fix_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/FixIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "additionalProperties": true,
+          "type": "object"
+         },
+         "type": "array",
+         "title": "Response Rotation Fix Rotation Fix Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/economics": {
+   "get": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "Economics",
+    "operationId": "economics_economics_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Economics Economics Get"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/climate/scenarios": {
+   "get": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "Scenarios",
+    "operationId": "scenarios_climate_scenarios_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "additionalProperties": true,
+          "type": "object"
+         },
+         "type": "array",
+         "title": "Response Scenarios Climate Scenarios Get"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/fields/{fid}/passport": {
+   "get": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "Field Passport",
+    "description": "«Паспорт поля»: four plain-language cards, the 20-year calendar and data sources.",
+    "operationId": "field_passport_fields__fid__passport_get",
+    "parameters": [
+     {
+      "name": "fid",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Fid"
+      }
+     },
+     {
+      "name": "lang",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "default": "ru",
+       "title": "Lang"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Field Passport Fields  Fid  Passport Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/fields/{fid}/imagery": {
+   "get": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "Field Imagery",
+    "description": "Field picture from the cascade (fresh Sentinel-2 → mosaic → local); always answers.",
+    "operationId": "field_imagery_fields__fid__imagery_get",
+    "parameters": [
+     {
+      "name": "fid",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Fid"
+      }
+     },
+     {
+      "name": "kind",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "default": "truecolor",
+       "title": "Kind"
+      }
+     },
+     {
+      "name": "offline",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": false,
+       "title": "Offline"
+      }
+     },
+     {
+      "name": "lang",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "default": "ru",
+       "title": "Lang"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Field Imagery Fields  Fid  Imagery Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/imagery/{name}": {
+   "get": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "Imagery File",
+    "operationId": "imagery_file_imagery__name__get",
+    "parameters": [
+     {
+      "name": "name",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Name"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "title": "Response Imagery File Imagery  Name  Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/reference/crops": {
+   "get": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "Reference Crops",
+    "description": "«Откуда цифры»: crop parameters with a source each, or None for an estimate (B13).",
+    "operationId": "reference_crops_reference_crops_get",
+    "parameters": [
+     {
+      "name": "lang",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "default": "ru",
+       "title": "Lang"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "additionalProperties": true
+         },
+         "title": "Response Reference Crops Reference Crops Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/rotation/crops": {
+   "get": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "Crops",
+    "operationId": "crops_rotation_crops_get",
+    "parameters": [
+     {
+      "name": "lang",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "default": "ru",
+       "title": "Lang"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "additionalProperties": true
+         },
+         "title": "Response Crops Rotation Crops Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/fields/{fid}/rotation/run": {
+   "post": {
+    "tags": [
+     "fields"
+    ],
+    "summary": "Run",
+    "description": "One rotation on consecutive historical years of the field's weather.",
+    "operationId": "run_fields__fid__rotation_run_post",
+    "parameters": [
+     {
+      "name": "fid",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Fid"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/RotationIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Run Fields  Fid  Rotation Run Post"
         }
        }
       }
@@ -1531,6 +2578,107 @@
      "type"
     ],
     "title": "ActionIn"
+   },
+   "AdviceIn": {
+    "properties": {
+     "lang": {
+      "type": "string",
+      "pattern": "^(ru|en|tg)$",
+      "title": "Lang",
+      "default": "ru"
+     },
+     "field_id": {
+      "type": "string",
+      "title": "Field Id"
+     },
+     "irrigation": {
+      "anyOf": [
+       {
+        "type": "string",
+        "pattern": "^(none|furrow|drip)$"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Irrigation"
+     },
+     "budget_usd_ha": {
+      "anyOf": [
+       {
+        "type": "number",
+        "minimum": 0.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Budget Usd Ha"
+     },
+     "labour_days_max": {
+      "anyOf": [
+       {
+        "type": "number",
+        "minimum": 0.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Labour Days Max"
+     },
+     "priorities": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "maxItems": 4,
+      "title": "Priorities"
+     },
+     "years": {
+      "type": "integer",
+      "maximum": 5.0,
+      "minimum": 3.0,
+      "title": "Years",
+      "default": 4
+     },
+     "irrigated": {
+      "type": "boolean",
+      "title": "Irrigated",
+      "default": false
+     },
+     "water_limit_m3_ha": {
+      "type": "number",
+      "maximum": 30000.0,
+      "minimum": 0.0,
+      "title": "Water Limit M3 Ha",
+      "default": 0.0
+     },
+     "scenario": {
+      "type": "string",
+      "title": "Scenario",
+      "default": "history"
+     },
+     "allowed": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "string"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Allowed"
+     }
+    },
+    "type": "object",
+    "required": [
+     "field_id"
+    ],
+    "title": "AdviceIn"
    },
    "AssumptionOut": {
     "properties": {
@@ -2720,6 +3868,26 @@
     "type": "object",
     "title": "EventPatchIn"
    },
+   "ExplainIn": {
+    "properties": {
+     "scheme": {
+      "additionalProperties": true,
+      "type": "object",
+      "title": "Scheme"
+     },
+     "baseline": {
+      "additionalProperties": true,
+      "type": "object",
+      "title": "Baseline"
+     }
+    },
+    "type": "object",
+    "required": [
+     "scheme",
+     "baseline"
+    ],
+    "title": "ExplainIn"
+   },
    "FactorOut": {
     "properties": {
      "key": {
@@ -2762,6 +3930,133 @@
      "status"
     ],
     "title": "FactorOut"
+   },
+   "FieldIn": {
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 80,
+      "minLength": 1,
+      "title": "Name"
+     },
+     "geometry": {
+      "additionalProperties": true,
+      "type": "object",
+      "title": "Geometry"
+     }
+    },
+    "type": "object",
+    "required": [
+     "name",
+     "geometry"
+    ],
+    "title": "FieldIn"
+   },
+   "FixIn": {
+    "properties": {
+     "lang": {
+      "type": "string",
+      "pattern": "^(ru|en|tg)$",
+      "title": "Lang",
+      "default": "ru"
+     },
+     "field_id": {
+      "type": "string",
+      "title": "Field Id"
+     },
+     "plan": {
+      "items": {
+       "prefixItems": [
+        {
+         "anyOf": [
+          {
+           "type": "string"
+          },
+          {
+           "type": "null"
+          }
+         ]
+        },
+        {
+         "anyOf": [
+          {
+           "type": "string"
+          },
+          {
+           "type": "null"
+          }
+         ]
+        }
+       ],
+       "type": "array",
+       "maxItems": 2,
+       "minItems": 2
+      },
+      "type": "array",
+      "maxItems": 6,
+      "minItems": 1,
+      "title": "Plan"
+     },
+     "year": {
+      "type": "integer",
+      "maximum": 5.0,
+      "minimum": 0.0,
+      "title": "Year"
+     },
+     "slot": {
+      "type": "integer",
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Slot"
+     },
+     "priorities": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "maxItems": 4,
+      "title": "Priorities"
+     },
+     "irrigation": {
+      "anyOf": [
+       {
+        "type": "string",
+        "pattern": "^(none|furrow|drip)$"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Irrigation"
+     },
+     "water_limit_m3_ha": {
+      "type": "number",
+      "maximum": 30000.0,
+      "minimum": 0.0,
+      "title": "Water Limit M3 Ha",
+      "default": 0.0
+     },
+     "budget_usd_ha": {
+      "anyOf": [
+       {
+        "type": "number",
+        "minimum": 0.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Budget Usd Ha"
+     }
+    },
+    "type": "object",
+    "required": [
+     "field_id",
+     "plan",
+     "year",
+     "slot"
+    ],
+    "title": "FixIn"
    },
    "GalaxyOut": {
     "properties": {
@@ -3749,6 +5044,361 @@
      "flare"
     ],
     "title": "PlantStateOut"
+   },
+   "ProfileIn": {
+    "properties": {
+     "weights": {
+      "additionalProperties": {
+       "type": "number"
+      },
+      "type": "object",
+      "title": "Weights"
+     },
+     "years": {
+      "type": "integer",
+      "maximum": 5.0,
+      "minimum": 3.0,
+      "title": "Years",
+      "default": 4
+     },
+     "horizon": {
+      "anyOf": [
+       {
+        "type": "integer",
+        "maximum": 10.0,
+        "minimum": 3.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Horizon"
+     },
+     "allowed": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "string"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Allowed"
+     },
+     "required": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Required"
+     },
+     "forbidden": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Forbidden"
+     },
+     "sellable": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "string"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Sellable"
+     },
+     "machinery": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Machinery"
+     },
+     "irrigated": {
+      "type": "boolean",
+      "title": "Irrigated",
+      "default": false
+     },
+     "water_limit_m3_ha": {
+      "type": "number",
+      "maximum": 30000.0,
+      "minimum": 0.0,
+      "title": "Water Limit M3 Ha",
+      "default": 0.0
+     },
+     "budget_usd_ha": {
+      "anyOf": [
+       {
+        "type": "number",
+        "minimum": 0.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Budget Usd Ha"
+     },
+     "covers": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Covers"
+     },
+     "prices": {
+      "additionalProperties": {
+       "type": "number"
+      },
+      "type": "object",
+      "title": "Prices"
+     },
+     "fert": {
+      "anyOf": [
+       {
+        "additionalProperties": {
+         "type": "number"
+        },
+        "type": "object"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Fert"
+     },
+     "scenario": {
+      "type": "string",
+      "title": "Scenario",
+      "default": "history"
+     },
+     "d_temp_c": {
+      "anyOf": [
+       {
+        "type": "number",
+        "maximum": 6.0,
+        "minimum": -3.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "D Temp C"
+     },
+     "d_precip": {
+      "anyOf": [
+       {
+        "type": "number",
+        "maximum": 0.6,
+        "minimum": -0.6
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "D Precip"
+     },
+     "d_heat_c": {
+      "anyOf": [
+       {
+        "type": "number",
+        "maximum": 6.0,
+        "minimum": 0.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "D Heat C"
+     },
+     "seed": {
+      "type": "integer",
+      "title": "Seed",
+      "default": 7
+     }
+    },
+    "type": "object",
+    "title": "ProfileIn"
+   },
+   "QuickIn": {
+    "properties": {
+     "lang": {
+      "type": "string",
+      "pattern": "^(ru|en|tg)$",
+      "title": "Lang",
+      "default": "ru"
+     },
+     "field_id": {
+      "type": "string",
+      "title": "Field Id"
+     },
+     "prices": {
+      "additionalProperties": {
+       "type": "number"
+      },
+      "type": "object",
+      "title": "Prices"
+     },
+     "plan": {
+      "items": {
+       "prefixItems": [
+        {
+         "anyOf": [
+          {
+           "type": "string"
+          },
+          {
+           "type": "null"
+          }
+         ]
+        },
+        {
+         "anyOf": [
+          {
+           "type": "string"
+          },
+          {
+           "type": "null"
+          }
+         ]
+        }
+       ],
+       "type": "array",
+       "maxItems": 2,
+       "minItems": 2
+      },
+      "type": "array",
+      "maxItems": 6,
+      "minItems": 1,
+      "title": "Plan"
+     },
+     "irrigation": {
+      "anyOf": [
+       {
+        "type": "string",
+        "pattern": "^(none|furrow|drip)$"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Irrigation"
+     },
+     "irrigated": {
+      "type": "boolean",
+      "title": "Irrigated",
+      "default": false
+     },
+     "water_limit_m3_ha": {
+      "type": "number",
+      "maximum": 30000.0,
+      "minimum": 0.0,
+      "title": "Water Limit M3 Ha",
+      "default": 0.0
+     },
+     "scenario": {
+      "type": "string",
+      "title": "Scenario",
+      "default": "history"
+     },
+     "start_year": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Start Year"
+     }
+    },
+    "type": "object",
+    "required": [
+     "field_id",
+     "plan"
+    ],
+    "title": "QuickIn"
+   },
+   "RotationIn": {
+    "properties": {
+     "plan": {
+      "items": {
+       "prefixItems": [
+        {
+         "anyOf": [
+          {
+           "type": "string"
+          },
+          {
+           "type": "null"
+          }
+         ]
+        },
+        {
+         "anyOf": [
+          {
+           "type": "string"
+          },
+          {
+           "type": "null"
+          }
+         ]
+        }
+       ],
+       "type": "array",
+       "maxItems": 2,
+       "minItems": 2
+      },
+      "type": "array",
+      "maxItems": 6,
+      "minItems": 1,
+      "title": "Plan"
+     },
+     "fert": {
+      "additionalProperties": {
+       "type": "number"
+      },
+      "type": "object",
+      "title": "Fert"
+     },
+     "irrigated": {
+      "type": "boolean",
+      "title": "Irrigated",
+      "default": false
+     },
+     "irrigation_limit_mm": {
+      "type": "number",
+      "maximum": 3000.0,
+      "minimum": 0.0,
+      "title": "Irrigation Limit Mm",
+      "default": 0.0
+     },
+     "start_year": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Start Year"
+     }
+    },
+    "type": "object",
+    "required": [
+     "plan"
+    ],
+    "title": "RotationIn"
    },
    "SavedScenarioOut": {
     "properties": {

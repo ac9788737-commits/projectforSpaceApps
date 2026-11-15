@@ -1,6 +1,6 @@
 import { CameraControls, PerformanceMonitor } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { Bloom, DepthOfField, EffectComposer, Vignette } from "@react-three/postprocessing";
+import { DepthOfField, EffectComposer } from "@react-three/postprocessing";
 import * as THREE from "three";
 import { useEffect, useRef } from "react";
 import type CameraControlsImpl from "camera-controls";
@@ -62,15 +62,14 @@ export function AutoQuality() {
 export function Effects({ garden = false }: { garden?: boolean }) {
   const quality = useExplore((s) => s.quality);
   const focus = useExplore((s) => (s.closeup ? s.focus : null));
-  if (quality === "low") return null;
+  if (quality === "low" || (!focus && !garden)) return null;
   return (
     <EffectComposer multisampling={0}>
       {/* Close-up: the background softly blurs (§6.5). */}
       {focus ? <DepthOfField target={new THREE.Vector3(...focus)} focalLength={0.02} bokehScale={3} height={480} /> : <></>}
       {/* Heat haze over the garden in a heatwave (docs/SIMULATOR.md §5). */}
       {garden ? <HeatHaze /> : <></>}
-      <Bloom intensity={0.8} luminanceThreshold={0.85} luminanceSmoothing={0.15} mipmapBlur />
-      <Vignette eskil={false} offset={0.25} darkness={0.55} />
+      {/* docs/DESIGN.md §7: no bloom glow and no vignette, the Lab too — matte light only */}
     </EffectComposer>
   );
 }

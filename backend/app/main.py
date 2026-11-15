@@ -11,7 +11,7 @@ from fastapi.middleware.gzip import GZipMiddleware
 from sqlmodel import Session
 
 from app import config
-from app.api import planets, scene, sim, simulation
+from app.api import fields, planets, scene, sim, simulation
 from app.database import create_tables, get_engine
 from app.ingest import bootstrap
 
@@ -25,7 +25,7 @@ async def lifespan(_: FastAPI) -> AsyncIterator[None]:
 
 
 app = FastAPI(
-    title="AstroCrop API",
+    title="WhatCropNext API",
     version="0.1.0",
     description="Как будет расти культура X на планете Y при сценарии Z?",
     lifespan=lifespan,
@@ -38,6 +38,7 @@ app.add_middleware(
     allow_headers=["Content-Type", "X-Admin-Token"],
 )
 app.include_router(planets.router)
+app.include_router(fields.router)
 app.include_router(simulation.router)
 app.include_router(scene.router)
 app.include_router(sim.router)

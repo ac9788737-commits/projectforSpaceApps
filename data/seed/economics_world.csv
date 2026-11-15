@@ -1,0 +1,20 @@
+item,price_usd_t,seed_usd_ha,ops_usd_ha,labour_h_ha,machinery,estimate,reference,notes
+wheat,268.7,60,180,6,,false,"World Bank Pink Sheet, annual 2024, Wheat US HRW (updated 2025-01-03)","World export price, not a farm-gate price; seed, operations and labour are estimates"
+winter_wheat,268.7,60,190,6,,false,"World Bank Pink Sheet, annual 2024, Wheat US HRW (updated 2025-01-03)",Same price as spring wheat; costs are estimates
+barley,220,50,170,6,,true,,"Pink Sheet has no 2024 barley price; estimate"
+maize,190.6,150,260,8,,false,"World Bank Pink Sheet, annual 2024, Maize (updated 2025-01-03)",Seed and operations are estimates
+pea,350,90,170,6,,true,,Estimate
+chickpea,700,110,180,8,,true,,Estimate
+alfalfa,180,40,250,12,small_seed_drill,true,,"Hay price estimate; seed cost spread over the stand"
+soybean,462.5,80,200,6,,false,"World Bank Pink Sheet, annual 2024, Soybeans (updated 2025-01-03)",Seed and operations are estimates
+potato,180,900,900,80,potato_digger,true,,"Fresh potato price and costs are estimates; needs a potato digger"
+tomato,250,600,1500,400,,true,,"Processing tomato estimate; mostly hand labour"
+cotton,690,90,450,40,cotton_picker,true,"World Bank Pink Sheet, annual 2024, Cotton A Index 1.911 $/kg lint (updated 2025-01-03)","Seed cotton valued as 36 % lint at the A Index price (gin out-turn is an estimate)"
+sunflower,450,90,180,6,,true,,Estimate
+vetch,0,60,40,2,,true,,Cover crop: cost only
+clover,0,50,40,2,small_seed_drill,true,,Cover crop: cost only
+rye_cover,0,50,40,2,,true,,Cover crop: cost only
+mustard,0,30,35,2,small_seed_drill,true,,Cover crop: cost only
+phacelia,0,40,35,2,small_seed_drill,true,,Cover crop: cost only
+_n_fertiliser,735,,,,,false,"World Bank Pink Sheet, annual 2024, Urea 338.3 $/t; 46 % N → 0.735 $/kg N","Price per tonne of N"
+_water,0.02,,,,,true,,"USD per m3 of irrigation water (pumping energy), estimate"

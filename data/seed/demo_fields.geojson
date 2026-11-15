@@ -1,0 +1,297 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              68.3975,
+              38.5285
+            ],
+            [
+              68.4025,
+              38.5285
+            ],
+            [
+              68.4025,
+              38.5315
+            ],
+            [
+              68.3975,
+              38.5315
+            ],
+            [
+              68.3975,
+              38.5285
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "tj-hissar",
+        "name": "Гиссарская долина",
+        "region": "Таджикистан",
+        "note": "Демо-участок в сельскохозяйственном районе; границы условные, не реальное хозяйство",
+        "card_ru": "Хлопковое поле, дефицит воды",
+        "irrigated": true,
+        "water_limit_m3_ha": 9000,
+        "current_plan": [
+          [
+            "cotton",
+            null
+          ],
+          [
+            "cotton",
+            null
+          ],
+          [
+            "cotton",
+            null
+          ],
+          [
+            "cotton",
+            null
+          ]
+        ],
+        "farmer": "Карим",
+        "story_ru": "Карим 10 лет сеет хлопок после хлопка на поливе.",
+        "irrigation_method": "furrow",
+        "i18n": {
+          "en": {
+            "name": "Hissar Valley",
+            "region": "Tajikistan",
+            "card": "Cotton field, water shortage",
+            "story": "For 10 years Karim has sown cotton after cotton under irrigation.",
+            "note": "Demo plot in a farming district; boundaries are approximate, not a real farm"
+          },
+          "tg": {
+            "name": "Водии Ҳисор",
+            "region": "Тоҷикистон",
+            "card": "Майдони пахта, норасоии об",
+            "story": "Карим 10 сол пахтаро пас аз пахта дар заминҳои обӣ мекорад.",
+            "note": "Қитъаи намоишӣ дар ноҳияи кишоварзӣ; ҳудудҳо тахминӣ, хоҷагии воқеӣ нест"
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -93.7025,
+              42.0985
+            ],
+            [
+              -93.6975,
+              42.0985
+            ],
+            [
+              -93.6975,
+              42.1015
+            ],
+            [
+              -93.7025,
+              42.1015
+            ],
+            [
+              -93.7025,
+              42.0985
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "us-iowa",
+        "name": "Округ Стори, Айова",
+        "region": "США",
+        "note": "Демо-участок в сельскохозяйственном районе; границы условные, не реальное хозяйство",
+        "card_ru": "Кукуруза и соя на холмах, смыв почвы",
+        "irrigated": false,
+        "water_limit_m3_ha": 0,
+        "current_plan": [
+          [
+            "maize",
+            null
+          ],
+          [
+            "soybean",
+            null
+          ],
+          [
+            "maize",
+            null
+          ],
+          [
+            "soybean",
+            null
+          ]
+        ],
+        "irrigation_method": "none",
+        "i18n": {
+          "en": {
+            "name": "Story County, Iowa",
+            "region": "USA",
+            "card": "Maize and soybean on hills, soil loss",
+            "note": "Demo plot in a farming district; boundaries are approximate, not a real farm"
+          },
+          "tg": {
+            "name": "Округи Стори, Айова",
+            "region": "ИМА",
+            "card": "Ҷуворимакка ва соя дар теппаҳо, шустани хок",
+            "note": "Қитъаи намоишӣ дар ноҳияи кишоварзӣ; ҳудудҳо тахминӣ, хоҷагии воқеӣ нест"
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              75.6975,
+              30.8485
+            ],
+            [
+              75.7025,
+              30.8485
+            ],
+            [
+              75.7025,
+              30.8515
+            ],
+            [
+              75.6975,
+              30.8515
+            ],
+            [
+              75.6975,
+              30.8485
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "in-punjab",
+        "name": "Лудхиана, Пенджаб",
+        "region": "Индия",
+        "note": "Демо-участок в сельскохозяйственном районе; границы условные, не реальное хозяйство",
+        "card_ru": "Пшеница и рис на поливе, жара",
+        "irrigated": true,
+        "water_limit_m3_ha": 8000,
+        "current_plan": [
+          [
+            "winter_wheat",
+            null
+          ],
+          [
+            "maize",
+            null
+          ],
+          [
+            "winter_wheat",
+            null
+          ],
+          [
+            "maize",
+            null
+          ]
+        ],
+        "irrigation_method": "furrow",
+        "i18n": {
+          "en": {
+            "name": "Ludhiana, Punjab",
+            "region": "India",
+            "card": "Wheat and rice under irrigation, heat",
+            "note": "Demo plot in a farming district; boundaries are approximate, not a real farm"
+          },
+          "tg": {
+            "name": "Лудҳиана, Панҷоб",
+            "region": "Ҳиндустон",
+            "card": "Гандум ва шолӣ дар заминҳои обӣ, гармо",
+            "note": "Қитъаи намоишӣ дар ноҳияи кишоварзӣ; ҳудудҳо тахминӣ, хоҷагии воқеӣ нест"
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.9475,
+              -0.3515
+            ],
+            [
+              35.9525,
+              -0.3515
+            ],
+            [
+              35.9525,
+              -0.3485
+            ],
+            [
+              35.9475,
+              -0.3485
+            ],
+            [
+              35.9475,
+              -0.3515
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "ke-nakuru",
+        "name": "Нджоро, Накуру",
+        "region": "Кения",
+        "note": "Демо-участок в сельскохозяйственном районе; границы условные, не реальное хозяйство",
+        "card_ru": "Богарное поле в горах, дожди дважды в год",
+        "irrigated": false,
+        "water_limit_m3_ha": 0,
+        "current_plan": [
+          [
+            "maize",
+            null
+          ],
+          [
+            "maize",
+            null
+          ],
+          [
+            "maize",
+            null
+          ],
+          [
+            "maize",
+            null
+          ]
+        ],
+        "irrigation_method": "none",
+        "i18n": {
+          "en": {
+            "name": "Njoro, Nakuru",
+            "region": "Kenya",
+            "card": "Rain-fed field in the highlands, two rainy seasons",
+            "note": "Demo plot in a farming district; boundaries are approximate, not a real farm"
+          },
+          "tg": {
+            "name": "Нҷоро, Накуру",
+            "region": "Кения",
+            "card": "Майдони лалмӣ дар кӯҳистон, борон ду бор дар сол",
+            "note": "Қитъаи намоишӣ дар ноҳияи кишоварзӣ; ҳудудҳо тахминӣ, хоҷагии воқеӣ нест"
+          }
+        }
+      }
+    }
+  ]
+}
