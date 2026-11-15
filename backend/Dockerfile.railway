@@ -1,0 +1,29 @@
+# Backend image for Railway (docs/DEPLOY.md). Built from the repository root, so the seed data,
+# the weather cache of the demo fields and their saved satellite pictures go into the image:
+# on Railway there is no ./data volume as in docker-compose.
+FROM python:3.12-slim
+
+ENV UV_LINK_MODE=copy \
+    UV_HTTP_TIMEOUT=300 \
+    UV_HTTP_RETRIES=10 \
+    UV_CONCURRENT_DOWNLOADS=2
+RUN pip install --no-cache-dir --default-timeout=300 --retries 10 uv
+
+WORKDIR /srv/backend
+COPY backend/pyproject.toml backend/uv.lock ./
+RUN uv sync --frozen --no-dev --no-install-project
+
+COPY backend/app ./app
+RUN uv sync --frozen --no-dev
+
+COPY data/seed /data/seed
+COPY data/cache /data/cache
+COPY frontend/public/demo/imagery /data/demo-imagery
+
+ENV ASTROCROP_DATA_DIR=/data \
+    ASTROCROP_DEMO_IMAGERY=/data/demo-imagery \
+    PORT=8000
+
+EXPOSE 8000
+# «::» — Railway's private network between services is IPv6
+CMD ["sh", "-c", "exec uv run --no-sync uvicorn app.main:app --host :: --port ${PORT}"]

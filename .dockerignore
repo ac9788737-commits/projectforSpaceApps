@@ -1,0 +1,17 @@
+# context of backend/Dockerfile.railway (built from the repository root)
+.git
+**/node_modules
+**/.venv
+**/__pycache__
+**/.mypy_cache
+**/.ruff_cache
+**/.pytest_cache
+**/.hypothesis
+frontend/dist
+data/raw
+data/fields
+data/*.db
+docs/screenshots
+index.html
+index (5).html
+.env
