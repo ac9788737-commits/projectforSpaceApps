@@ -1,53 +1,87 @@
 # WhatCropNext
 
-Планировщик севооборота на реальном поле по данным NASA. Выберите поле на карте — система подтянет 20 лет погоды NASA POWER, почву SoilGrids, рельеф и снимки MODIS, покажет уязвимые периоды (голая почва, жара, засуха, заморозки) и сравнит схемы севооборота на 3–5 лет по вашим приоритетам — с интервалами неопределённости, стресс-тестом климата и честным списком пробелов в данных. Это инструмент поддержки решений, а не замена агроному.
+**What to plant next** — a crop rotation planner for a real field, built on NASA data.
 
-## Запуск
+Pick a field on the map and the system pulls 20 years of NASA POWER weather, SoilGrids soil data, terrain and MODIS imagery. It shows the vulnerable periods (bare soil, heat, drought, frost) and compares 3–5-year crop rotation schemes against your priorities — with uncertainty ranges, a climate stress test and an honest list of data gaps. It is a decision-support tool, not a replacement for an agronomist.
 
-Нужны `uv`, Node.js и `make`.
+NASA Space Apps Challenge 2026 · Dushanbe · Challenge: **Field Shift — Adapting Farms with NASA Data**
+Team **GoAndWin**: Saifiddinzoda Amirhamza · Khushdil Saidov · Mukhamedzhanov Ismat
+
+Live demo: https://frontend-production-ca7a5d62.up.railway.app/
+Русская версия: [README.ru.md](README.ru.md)
+
+## Run
+
+Requires `uv`, Node.js and `make`.
 
 ```bash
 make install
-make ingest        # скачать каталоги NASA и PHL (без сети сработают кэш и снимок)
-make dev-backend   # API на http://localhost:8000, документация на /docs
-make dev-frontend  # интерфейс на http://localhost:5173
+make ingest        # download NASA and PHL catalogs (offline: cache and snapshot are used)
+make dev-backend   # API at http://localhost:8000, docs at /docs
+make dev-frontend  # UI at http://localhost:5173
 ```
 
-Сайт открывается **лендингом** (`/`, [docs/LANDING.md](docs/LANDING.md)): выберите одно из четырёх полей или обведите своё на спутниковой карте. Дальше — **конструктор «Что сеять?»**: живое поле, на полосы которого бросают пакеты семян; растения, разрез почвы и четыре прибора (вода, деньги, здоровье почвы, риск) меняются сразу. Есть «Предложить план», «Прожить 4 года», кубик погоды, «20 лет погоды», машина времени по месяцам и «А что, если…» для более жёсткого климата. В конце — **«Ваш план»** с главными выводами и тем, что проверить на месте. При первом визите на поле Гиссара — короткая история фермера Карима (`?story=1` — показать снова).
+With Docker: `make up`, the UI opens at http://localhost:8080.
 
-Паспорт поля показывает **снимок Sentinel-2** (свежий — если над полем нет облаков, иначе безоблачная мозаика или сохранённый снимок; экран не ломается без интернета) и «Тогда и сейчас» — как изменились жара, осадки и морозы за 20 лет. В конструкторе есть способ полива, бюджет и рабочие руки, **«Запас почвы»** по годам, «Чем заменить?» для плохих сочетаний, предупреждение о засолении, живые титры при проигрывании; в итоге — своя цена на рынке и календарь работ.
+## What you can do
 
-Интерфейс на **трёх языках — RU / EN / TG** (переключатель в шапке; таджикский пока частично). **«ⓘ Откуда цифры»** (`/reference`) — все параметры культур с источником или пометкой «оценка», с поиском и выгрузкой в CSV.
+The site opens with a **landing page** (`/`, [docs/LANDING.md](docs/LANDING.md)): choose one of four fields or draw your own on a satellite map. Next comes the **"What to sow?" builder**: a living field where you drop seed packets onto strips; plants, the soil profile and four gauges (water, money, soil health, risk) update instantly. There are "Suggest a plan", "Live through 4 years", a weather die, "20 years of weather", a month-by-month time machine and "What if…" scenarios for a harsher climate. The result is **"Your plan"** with key findings and what to check on site. On the first visit to the Hissar field a short story of farmer Karim is shown (`?story=1` to show it again).
 
-Сценарий показа на 5–7 минут — [docs/DEMO.md](docs/DEMO.md).
+The **field passport** shows a **Sentinel-2 image** (fresh if the field is cloud-free, otherwise a cloudless mosaic or a saved image — the screen works without internet) and "Then and now": how heat, rainfall and frost changed over 20 years. The builder includes irrigation type, budget and labor, a year-by-year **"Soil reserve"**, "What to swap?" for bad combinations, a salinization warning and live captions during playback; the final plan supports your own market price and a work calendar.
 
-**Скрытые разделы.** «Режим эксперта» (таблицы, графики и термины, `/expert/fields`) и «Лаборатория» (растения на других планетах: 3D-путешествие, огород, каталог планет, симулятор, сравнение) на сайте скрыты; код остаётся и включается при сборке: `VITE_FEATURE_EXPERT=true`, `VITE_FEATURE_SPACE_LAB=true` (см. `frontend/src/flags.ts`).
+The interface is in **three languages — RU / EN / TG** (switch in the header; Tajik is partial). **"ⓘ Where the numbers come from"** (`/reference`) lists every crop parameter with its source or an "estimate" label, with search and CSV export.
 
-Экран «Что сеять?» — живое поле ([docs/DESIGN_V3.md](docs/DESIGN_V3.md)): пакеты семян бросаются на полосы поля, растения растут по данным модели, приборы двигаются; записи — [перетаскивание](docs/screenshots/design/v3/drag.gif), [«Прожить 4 года»](docs/screenshots/design/v3/live-4-years.gif).
+A 5–7-minute demo script: [docs/DEMO.md](docs/DEMO.md).
 
-Скриншоты: [этап 9 на трёх языках](docs/screenshots/stage9/), [поля и севооборот](docs/screenshots/rotation/), [симулятор](docs/screenshots/simulator/), [дизайн](docs/screenshots/design/). Дизайн — «полевой журнал» ([docs/DESIGN.md](docs/DESIGN.md)): бумага и чернила, цвет почвы по шкале Манселла, план поля с почвенным разрезом; элементы — на странице `/dev/ui`, проверка `node scripts/design-lint.ts` входит в `make lint`. Аудит и пары «до/после» — [docs/DESIGN_AUDIT.md](docs/DESIGN_AUDIT.md), [docs/screenshots/design/](docs/screenshots/design/).
+**Hidden sections.** "Expert mode" (tables, charts and terms, `/expert/fields`) and the "Lab" (plants on other planets: 3D journey, garden, planet catalog, simulator, comparison) are hidden on the public site; the code remains and is enabled at build time with `VITE_FEATURE_EXPERT=true`, `VITE_FEATURE_SPACE_LAB=true` (see `frontend/src/flags.ts`).
 
-Необязательно: `EARTHDATA_TOKEN` в `.env` — для слоёв NASA Earthdata (пока не подключены, см. `docs/BLOCKERS.md`); `ANTHROPIC_API_KEY` — объяснения схем от Claude вместо шаблонов (числа в них всё равно проверяются).
+Design: the living field ([docs/DESIGN_V3.md](docs/DESIGN_V3.md)); recordings — [drag and drop](docs/screenshots/design/v3/drag.gif), ["Live through 4 years"](docs/screenshots/design/v3/live-4-years.gif). Screenshots: [stage 9 in three languages](docs/screenshots/stage9/), [fields and rotation](docs/screenshots/rotation/), [simulator](docs/screenshots/simulator/), [design](docs/screenshots/design/). The visual style is a "field journal" ([docs/DESIGN.md](docs/DESIGN.md)): paper and ink, soil color on the Munsell scale, a field plan with a soil profile; components at `/dev/ui`, `node scripts/design-lint.ts` runs as part of `make lint`. Audit and before/after pairs: [docs/DESIGN_AUDIT.md](docs/DESIGN_AUDIT.md).
 
-Через Docker: `make up`, интерфейс откроется на http://localhost:8080.
+Optional: `EARTHDATA_TOKEN` in `.env` for NASA Earthdata layers (not connected yet, see `docs/BLOCKERS.md`); `ANTHROPIC_API_KEY` for plan explanations written by Claude instead of templates (the numbers in them are still checked).
 
-## Команды
+## Commands
 
-| Команда | Что делает |
+| Command | What it does |
 |---|---|
-| `make test` | тесты бэкенда и фронтенда |
-| `make lint` | ruff, mypy, проверка типов фронтенда |
-| `make openapi` | заново сгенерировать типы клиента API |
-| `make e2e` | проверка «живости» экрана 2 в браузере (нужны запущенные серверы) |
-| `make precompute` | сохранить снимки и советы демо-полей (показ без сети) |
-| `make snapshot` | обновить офлайн-снимок реальных планет в `data/seed` |
+| `make test` | backend and frontend tests |
+| `make lint` | ruff, mypy, frontend type check |
+| `make openapi` | regenerate API client types |
+| `make e2e` | browser "liveness" check of screen 2 (servers must be running) |
+| `make precompute` | save images and advice for demo fields (offline demo) |
+| `make snapshot` | refresh the offline snapshot of real planets in `data/seed` |
 
-## Как читать результат
+## How to read the results
 
-- **Урожайность** в таблицах указана в процентах от земной в хороших условиях и не превышает 100 %. В отчёте огорода есть и «% от нормы» — от того же сезона без событий и действий фермера; полив сверх нормы может дать больше 100 %.
-- **Уверенность** снижается за каждое допущение. Список допущений показан рядом с результатом.
-- **Оценки.** Физиологические параметры культур пока заданы экспертной оценкой (`estimate=true`), поэтому результаты годятся для сравнения вариантов, а не для точного прогноза.
+- **Yield** in tables is a percentage of the yield under good conditions on Earth and never exceeds 100%. The garden report also has "% of normal" — relative to the same season without events or farmer actions; irrigation above the norm can give more than 100%.
+- **Confidence** decreases with every assumption. The list of assumptions is shown next to the result.
+- **Estimates.** Crop physiology parameters are currently expert estimates (`estimate=true`), so results are suitable for comparing options, not for exact forecasts.
 
-Подробности: [docs/ASSUMPTIONS.md](docs/ASSUMPTIONS.md), [docs/DECISIONS.md](docs/DECISIONS.md), [docs/PROGRESS.md](docs/PROGRESS.md), [docs/INTERACTIVE.md](docs/INTERACTIVE.md), [docs/SIMULATOR.md](docs/SIMULATOR.md), [docs/ROTATION.md](docs/ROTATION.md), [docs/CREDITS.md](docs/CREDITS.md).
+Details: [docs/ASSUMPTIONS.md](docs/ASSUMPTIONS.md), [docs/DECISIONS.md](docs/DECISIONS.md), [docs/PROGRESS.md](docs/PROGRESS.md), [docs/INTERACTIVE.md](docs/INTERACTIVE.md), [docs/SIMULATOR.md](docs/SIMULATOR.md), [docs/ROTATION.md](docs/ROTATION.md), [docs/CREDITS.md](docs/CREDITS.md).
 
-Обновление данных через API требует переменной `ASTROCROP_ADMIN_TOKEN` и заголовка `X-Admin-Token`.
+Updating data through the API requires the `ASTROCROP_ADMIN_TOKEN` variable and the `X-Admin-Token` header.
+
+## AI Use Disclosure
+
+This project was built with the help of Super Intelligence (SI) tools, as allowed by the NASA Space Apps Challenge rules.
+
+- **Code:** Most of the source code (Python/FastAPI backend, React/TypeScript frontend, SVG graphics, Docker setup) was generated with **Claude (Anthropic)** from prompts written by our team. The team designed the concept, wrote the prompts, reviewed, tested and adjusted the generated code, and chose all data sources and model logic.
+- **SI inside the product:** if `ANTHROPIC_API_KEY` is set, plan explanations are written by Claude instead of templates; the numbers in them are checked against the model.
+- **Text:** UI texts, documentation and translations (English, Russian, Tajik) were drafted and edited with Claude.
+- **Presentation:** slides and illustrations were created with AI assistance (Claude) and are marked as such on every slide.
+- **Data:** all numbers come from the open datasets listed below, not from AI. Parameters without a published source are labeled "estimate" in the app.
+
+No NASA logos, flags, mission identifiers or other NASA branding were generated or modified with SI tools.
+
+## Data Sources & Attribution
+
+Full list: [docs/CREDITS.md](docs/CREDITS.md).
+
+- **NASA POWER** — 20 years of daily weather (https://power.larc.nasa.gov/)
+- **MODIS MOD13Q1 NDVI** and **NASA GIBS** MODIS layers
+- **Sentinel-2** imagery — contains modified Copernicus Sentinel data 2026 (ESA / Copernicus)
+- **Sentinel-2 cloudless** — https://s2maps.eu by EOX IT Services GmbH (contains modified Copernicus Sentinel data 2024)
+- **SoilGrids** — ISRIC World Soil Information
+- **AWS Terrain Tiles** — elevation and slope
+- **FAO-56** (Irrigation and Drainage Paper 56) and **FAO EcoCrop**
+- **World Bank** Commodity Price Data
+- Lab mode only (hidden on the public site): NASA Exoplanet Archive, NASA Planetary Fact Sheet, NASA JPL Solar System Dynamics, PHL Habitable Worlds Catalog, Solar System Scope textures (CC BY 4.0)
